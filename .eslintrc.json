@@ -9,6 +9,9 @@
     "extends": [
       "eslint:recommended"
     ],
+    "plugins": [
+      "react"
+    ],
     "installedESLint": true,
     "parserOptions": {
         "ecmaFeatures": {

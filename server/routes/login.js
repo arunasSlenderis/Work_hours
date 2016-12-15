@@ -5,6 +5,7 @@ const login = (app) => {
     passport.authenticate("local.login", (err, user, info) => {
       if(err) return next(err);
       if(!user) return res.json(info);
+
       res.json(user);
     })(req, res, next);
   });
