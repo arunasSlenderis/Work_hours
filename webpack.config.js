@@ -2,27 +2,24 @@ var path = require("path");
 var htmlWebpackPlugin = require("html-webpack-plugin");
 var webpack = require("webpack");
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
+var purify = require("purifycss-webpack-plugin");
 
 var DEVELOPMENT = process.env.NODE_ENV === "development";
 var PRODUCTION = process.env.NODE_ENV === "production";
 
 //development config
 var plugins = [
-  new ExtractTextPlugin("css/style-[contenthash:10].css"),
   new webpack.optimize.OccurrenceOrderPlugin(),
   new webpack.HotModuleReplacementPlugin(),
   new webpack.NoErrorsPlugin(),
   new htmlWebpackPlugin({
     template: path.join(__dirname, "src", "index.html"),
     inject: "body", //default
-    hash: true,
-    chunks: ["common", "app"]
+    hash: true
+    // chunks: ["common", "app"]
   }),
   new webpack.optimize.CommonsChunkPlugin({
-    // name: ["common", "vendor", "webpackCode"] //order matters
-    name: "common",
-    filename: "common-[hash].js",
-    chunks: ["vendor", "app"]
+    name: ["common", "vendor", "webpack"] //order matters
   }),
   new webpack.DefinePlugin({
     DEVELOPMENT: JSON.stringify(DEVELOPMENT),
@@ -30,36 +27,46 @@ var plugins = [
   })
 ];
 
-var devtool = "#sourcemap";
-var cssSourceMap = "?sourcemap";
+var devtool = "#eval-source-map";
 var appEntry = [
   "webpack-hot-middleware/client",
   path.join(__dirname, "src", "index.js")
 ];
+var loader = "style-loader!css-loader?sourcemap!sass-loader?sourcemap";
 
 function createConfig(isDebug) {
   if (!isDebug) {
     //config for production
     plugins.push(
-      new webpack.optimize.UglifyJsPlugin()
+      new webpack.optimize.UglifyJsPlugin(),
+      new ExtractTextPlugin("css/style-[contenthash:10].css"),
+      new purify({
+        basePath: __dirname,
+        paths: [
+          path.join(__dirname, "dist", "index.html")
+        ],
+        purifyOptions: {
+          minify: true
+        }
+      })
     );
 
     devtool = false;
-    cssSourceMap = "";
     appEntry.shift();
+    loader = ExtractTextPlugin.extract({
+      fallbackLoader: "style-loader",
+      loader: ["css-loader?minimize", "sass-loader"]
+    });
   }
   return {
-    externals: {
-      "React": "react"
-    },
     devtool,
     entry: {
       app: appEntry,
-      vendor: ["react"]
+      vendor: ["react", "react-dom"]
     },
     output: {
       path: path.join(__dirname, "dist"),
-      filename: "[name].[chunkhash].bundle.js"
+      filename: "[name].[hash].bundle.js"
     },
     plugins,
     module: {
@@ -68,9 +75,6 @@ function createConfig(isDebug) {
           test: /\.js$/,
           loader: "babel-loader",
           include: path.join(__dirname, "src")
-            // query: {
-            //   presets: ["react-hmre"]
-            // }
         },
         {
           test: /\.js$/,
@@ -79,11 +83,7 @@ function createConfig(isDebug) {
         },
         {
           test: /\.scss$/,
-          loader: ExtractTextPlugin.extract({
-            fallbackLoader: "style-loader",
-            loader: ["css-loader" + cssSourceMap,"sass-loader" + cssSourceMap]
-
-          }),
+          loader,
           include: path.join(__dirname, "src")
         },
         {

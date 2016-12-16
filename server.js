@@ -26,6 +26,7 @@ const compiler = webpack(webpackConfig);
 
 if(process.env.NODE_ENV.trim() == "development") {
   app.use(webpackDevMiddleware(compiler, {
+    hot: true,
     noInfo: true,
     stats: {
       colors: true
@@ -34,7 +35,7 @@ if(process.env.NODE_ENV.trim() == "development") {
   app.use(webpackHotMiddleware(compiler));
 
   app.get("/", (req, res) => {
-    res.sendFile(path.resolve("./src/index.html"));
+    res.sendFile(path.join(__dirname, "src", "index.html"));
   });
 }
 
@@ -49,7 +50,7 @@ const MongoStore = connectMongo(session); //for production
 
 require("./server/config/passport");
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 
 app.use(logger("dev"));
 
@@ -75,5 +76,5 @@ addUser(app); //POST
 login(app); //POST
 
 app.listen(PORT, () => {
-  console.log(`Server is listening on port ${PORT} in ${process.env.NODE_ENV} mode`);
+  console.log(`Server is listening on port ${PORT} in ${process.env.NODE_ENV}mode`);
 });

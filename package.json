@@ -4,11 +4,11 @@
   "description": "Working time record for projects",
   "main": "server.js",
   "scripts": {
-    "start": "SET NODE_ENV=development & nodemon server.js --exec babel-node",
+    "start": "SET NODE_ENV=production & babel-node server.js",
     "webpack": "node_modules/.bin/webpack",
     "removeDist": "rimraf dist",
-    "build": "rimraf dist & SET NODE_ENV=development & webpack",
-    "dev": "SET NODE_ENV=development & nodemon server.js --exec babel-node --ignore src"
+    "build": "rimraf dist && SET NODE_ENV=production & webpack",
+    "dev": "rimraf dist && SET NODE_ENV=development & nodemon server.js --exec babel-node --ignore src"
   },
   "author": "Arunas Slenderis",
   "license": "ISC",
@@ -29,6 +29,8 @@
     "html-webpack-plugin": "^2.24.1",
     "node-sass": "^3.13.0",
     "nodemon": "^1.11.0",
+    "purifycss-webpack-plugin": "^2.0.3",
+    "react-hot-loader": "^1.3.1",
     "rimraf": "^2.5.4",
     "sass-loader": "^4.0.2",
     "style-loader": "^0.13.1",
@@ -51,6 +53,7 @@
     "morgan": "^1.7.0",
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
-    "react": "^15.4.1"
+    "react": "^15.4.1",
+    "react-dom": "^15.4.1"
   }
 }
