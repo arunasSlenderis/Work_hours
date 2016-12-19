@@ -1,6 +1,6 @@
 import passport from "passport";
 
-const login = (app) => {
+const login = app => {
   app.post("/login", (req, res, next) => {
     passport.authenticate("local.login", (err, user, info) => {
       if(err) return next(err);

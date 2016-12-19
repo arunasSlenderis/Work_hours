@@ -7,11 +7,10 @@ var purify = require("purifycss-webpack-plugin");
 var DEVELOPMENT = process.env.NODE_ENV === "development";
 var PRODUCTION = process.env.NODE_ENV === "production";
 
-//development config
+var devtool, appEntry, loader;
+
+//common config
 var plugins = [
-  new webpack.optimize.OccurrenceOrderPlugin(),
-  new webpack.HotModuleReplacementPlugin(),
-  new webpack.NoErrorsPlugin(),
   new htmlWebpackPlugin({
     template: path.join(__dirname, "src", "index.html"),
     inject: "body", //default
@@ -21,21 +20,32 @@ var plugins = [
   new webpack.optimize.CommonsChunkPlugin({
     name: ["common", "vendor", "webpack"] //order matters
   }),
+  new webpack.ProvidePlugin({
+    $: "jquery",
+    jQuery: "jquery"
+  }),
   new webpack.DefinePlugin({
     DEVELOPMENT: JSON.stringify(DEVELOPMENT),
     PRODUCTION: JSON.stringify(PRODUCTION)
   })
 ];
 
-var devtool = "#eval-source-map";
-var appEntry = [
-  "webpack-hot-middleware/client",
-  path.join(__dirname, "src", "index.js")
-];
-var loader = "style-loader!css-loader?sourcemap!sass-loader?sourcemap";
-
 function createConfig(isDebug) {
-  if (!isDebug) {
+  // config for development
+  if(isDebug) {
+    plugins.push(
+      new webpack.optimize.OccurrenceOrderPlugin(),
+      new webpack.HotModuleReplacementPlugin(),
+      new webpack.NoErrorsPlugin()
+    );
+    devtool = "#eval-source-map";
+    appEntry = [
+      "webpack-hot-middleware/client",
+      path.join(__dirname, "src", "index.js")
+    ];
+    loader = "style-loader!css-loader?sourcemap!sass-loader?sourcemap";
+  }
+  else {
     //config for production
     plugins.push(
       new webpack.optimize.UglifyJsPlugin(),
@@ -52,7 +62,7 @@ function createConfig(isDebug) {
     );
 
     devtool = false;
-    appEntry.shift();
+    appEntry = path.join(__dirname, "src", "index.js");
     loader = ExtractTextPlugin.extract({
       fallbackLoader: "style-loader",
       loader: ["css-loader?minimize", "sass-loader"]
@@ -62,7 +72,7 @@ function createConfig(isDebug) {
     devtool,
     entry: {
       app: appEntry,
-      vendor: ["react", "react-dom"]
+      vendor: ["react", "react-dom", "react-router", "jquery"]
     },
     output: {
       path: path.join(__dirname, "dist"),
