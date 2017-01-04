@@ -7,7 +7,8 @@ var purify = require("purifycss-webpack-plugin");
 var DEVELOPMENT = process.env.NODE_ENV === "development";
 var PRODUCTION = process.env.NODE_ENV === "production";
 
-var devtool, appEntry, loader;
+var devtool, appEntry, loader, filename;
+var hints = false; // eslint-disable-line no-unused-vars
 
 //common config
 var plugins = [
@@ -44,6 +45,7 @@ function createConfig(isDebug) {
       path.join(__dirname, "src", "index.js")
     ];
     loader = "style-loader!css-loader?sourcemap!sass-loader?sourcemap";
+    filename = "[name].bundle.js";
   }
   else {
     //config for production
@@ -67,24 +69,47 @@ function createConfig(isDebug) {
       fallbackLoader: "style-loader",
       loader: ["css-loader?minimize", "sass-loader"]
     });
+    hints = true;
+    filename = "[name].[hash].bundle.js";
   }
   return {
     devtool,
     entry: {
       app: appEntry,
-      vendor: ["react", "react-dom", "react-router", "jquery"]
+      vendor: [
+        "react",
+        "react-dom",
+        "react-router",
+        "react-redux",
+        "redux",
+        "redux-thunk",
+        "redux-promise-middleware",
+        "jquery",
+        "classnames",
+        "axios",
+        "lodash"
+      ]
     },
     output: {
       path: path.join(__dirname, "dist"),
-      filename: "[name].[hash].bundle.js"
+      filename
     },
     plugins,
+    performance: {
+      hints: false
+    },
     module: {
       loaders: [
         {
           test: /\.js$/,
           loader: "babel-loader",
-          include: path.join(__dirname, "src")
+          include: [
+            path.join(__dirname, "src"),
+            path.join(__dirname, "shared")
+          ],
+          query: {
+            presets: ["react-hmre"]
+          }
         },
         {
           test: /\.js$/,

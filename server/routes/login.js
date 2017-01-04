@@ -1,14 +1,22 @@
 import passport from "passport";
+import express from "express";
 
-const login = app => {
-  app.post("/login", (req, res, next) => {
+import validateInput from "../../shared/loginValidation";
+
+const router = express.Router();
+
+router.post("/", (req, res, next) => {
+  const { errors, isValid } = validateInput(req.body);
+
+  if(isValid) {
     passport.authenticate("local.login", (err, user, info) => {
       if(err) return next(err);
-      if(!user) return res.json(info);
-
-      res.json(user);
+      if(!user) return res.status(400).json(info);
+      res.redirect("/");
     })(req, res, next);
-  });
-};
+  } else {
+    res.status(400).json(errors);
+  }
+});
 
-export default login;
+export default router;

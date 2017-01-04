@@ -7,19 +7,20 @@ import cookie from "cookie-parser";
 import expressValidator from "express-validator";
 import mongoose from "mongoose"; //for production
 import connectMongo from "connect-mongo"; //for production
-import flash from "connect-flash";
+// import flash from "connect-flash";
 import passport from "passport";
 import path from "path";
 import webpack from "webpack";
 import webpackDevMiddleware from "webpack-dev-middleware";
 import webpackHotMiddleware from "webpack-hot-middleware";
+import compression from "compression";
 
 //local modules
+import User from "./DB/models/User";
+import webpackConfig from "./webpack.config";
 import getAllUsers from "./server/routes/getAllUsers";
 import addUser from "./server/routes/addUser";
 import login from "./server/routes/login";
-import User from "./DB/models/User";
-import webpackConfig from "./webpack.config";
 
 const app = express();
 const compiler = webpack(webpackConfig);
@@ -34,12 +35,28 @@ if(process.env.NODE_ENV.trim() == "development") {
   }));
   app.use(webpackHotMiddleware(compiler));
 
-  app.get("/", (req, res) => {
-    res.sendFile(path.join(__dirname, "src", "index.html"));
+  // app.get("/*", (req, res) => {
+  //   res.sendFile(__dirname, "src", "index.html");
+  // });
+
+  // for different routes than "/" to be able to reload page and not get error
+  app.get("/*", function (req, res, next) {
+    const filename = path.join(compiler.outputPath, "index.html");
+    compiler.outputFileSystem.readFile(filename, function(err, result){
+      if (err) {
+        return next(err);
+      }
+      res.set("content-type","text/html");
+      res.send(result);
+      res.end();
+    });
   });
+
+  app.use(logger("dev"));
 }
 
 if(process.env.NODE_ENV.trim() == "production") {
+  app.use(compression());
   app.use(express.static(path.join(__dirname, "dist")));
 }
 
@@ -48,14 +65,12 @@ mongoose.connect("mongodb://localhost/workRecords");
 
 const MongoStore = connectMongo(session); //for production
 
-require("./server/config/passport");
-
 const PORT = process.env.PORT || 3001;
 
-app.use(logger("dev"));
-
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
+
+require("./server/config/passport");
 
 app.use(expressValidator());
 
@@ -66,14 +81,14 @@ app.use(session({
   resave: false,
   store: new MongoStore({ mongooseConnection: mongoose.connection }) //for production
 }));
-app.use(flash());
+// app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 
 //routes
 getAllUsers(app, User); //GET
 addUser(app); //POST
-login(app); //POST
+app.use("/api/login", login); //POST
 
 app.listen(PORT, () => {
   console.log(`Server is listening on port ${PORT} in ${process.env.NODE_ENV}mode`);

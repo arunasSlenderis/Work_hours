@@ -1,0 +1,20 @@
+import React, { Component, PropTypes } from "react";
+
+import Navigation from "../components/Navigation";
+
+require("../styles/app.scss");
+
+export default class App extends Component {
+  render() {
+    return (
+      <div className="container">
+        <Navigation />
+        { this.props.children }
+      </div>
+    );
+  }
+}
+
+App.propTypes = {
+  children: PropTypes.element
+};

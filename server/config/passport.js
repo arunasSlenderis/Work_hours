@@ -64,13 +64,6 @@ passport.use("local.login", new Strategy({
   passwordField: "password",
   passReqToCallback: true
 }, (req, email, password, done) => {
-  req.checkBody("email", "E-mail is required").notEmpty();
-  req.checkBody("email", "E-mail must be valid").isEmail();
-  req.checkBody("password", "Password is required").notEmpty();
-
-  validationErrors = isErrors(req.validationErrors());
-  if(validationErrors) return done(null, false, validationErrors);
-
   User.findOne({"email": email}, (err, user) => {
     if(err) return done(err);
 
