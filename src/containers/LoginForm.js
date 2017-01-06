@@ -1,9 +1,9 @@
 import React, { Component, PropTypes } from "react";
 import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
 
 import TextField from "../components/TextField";
-import validateInput from "../../shared/loginValidation";
-import { loginRequest } from "../redux/actions/loginAction";
+import { loginRequest } from "../redux/actions/loginActions";
 
 class LoginForm extends Component {
   constructor(props) {
@@ -11,49 +11,41 @@ class LoginForm extends Component {
 
     this.state = {
       email: "",
-      password: "",
-      errors: {},
-      isLoading: false
+      password: ""
     };
 
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
-    this.isValid = this.isValid.bind(this);
   }
 
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
 
-  isValid() {
-    const { errors, isValid } = validateInput(this.state);
-
-    if(!isValid) {
-      this.setState({ errors });
-    }
-
-    return isValid;
-  }
-
   onSubmit(e) {
     e.preventDefault();
 
-    if(this.isValid()) {
-      this.setState({ errors: {}, isLoading: true });
-      this.props.loginRequest(this.state).then(
-        () => this.context.router.push("/"),
-        err => this.setState({ errors: err.response.data, isLoading: false })
-      );
-    }
+    this.props.loginRequest(this.state);
+    document.getElementById("password").value = "";
+  }
+
+// after props changed
+  componentDidUpdate() {
+    if(this.props.redirect) this.context.router.push("/");
   }
 
   render() {
-    const { errors, isLoading } = this.state;
-    // if(Object.getOwnPropertyNames(this.props.loginRequest).length === 0) {
-    //   return(<div></div>);
-    // }
+    const { errors, isLoading } = this.props;
     return (
       <form onSubmit={ this.onSubmit } className="form-horizontal">
+
+        {
+          errors.message &&
+          <div className="alert alert-danger">
+            { errors.message }
+          </div>
+        }
+
         <TextField
           htmlFor="loginEmail"
           label="User Email"
@@ -87,11 +79,27 @@ class LoginForm extends Component {
 }
 
 LoginForm.propTypes = {
-  loginRequest: PropTypes.func.isRequired
+  loginRequest: PropTypes.func.isRequired,
+  errors: PropTypes.object,
+  isLoading: PropTypes.bool.isRequired,
+  redirect: PropTypes.bool.isRequired
 };
 
 LoginForm.contextTypes = {
   router: PropTypes.object.isRequired
 };
 
-export default connect(null, { loginRequest })(LoginForm);
+const mapStateToProps = state => {
+  return {
+    errors: state.login.errors,
+    isLoading: state.login.isLoading,
+    redirect: state.login.redirect
+  };
+};
+const mapDispatchToProps = dispatch => {
+  return bindActionCreators({
+    loginRequest
+  }, dispatch);
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);

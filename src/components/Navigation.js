@@ -18,7 +18,7 @@ const Navigation = () => {
             <span className="icon-bar" />
             <span className="icon-bar" />
           </button>
-          <Link className="navbar-brand" to="/">Brand</Link>
+          <Link className="navbar-brand" to="/">HOME</Link>
         </div>
         {/* Collect the nav links, forms, and other content for toggling */}
         <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">

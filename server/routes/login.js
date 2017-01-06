@@ -12,7 +12,7 @@ router.post("/", (req, res, next) => {
     passport.authenticate("local.login", (err, user, info) => {
       if(err) return next(err);
       if(!user) return res.status(400).json(info);
-      res.redirect("/");
+      res.json({ success: true });
     })(req, res, next);
   } else {
     res.status(400).json(errors);

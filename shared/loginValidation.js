@@ -3,7 +3,7 @@ import isEmpty from "lodash/isEmpty";
 
 export default function validateInput(data) {
   const errors = {};
-
+  
   if(Validator.isEmpty(data.email)) {
     errors.email = "E-mail is required";
   }
