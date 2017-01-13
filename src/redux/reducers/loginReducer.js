@@ -1,4 +1,6 @@
 export default function loginReducer(state = {
+  user: {},
+  isAuthnticated: false,
   redirect: false,
   errors: {},
   isLoading: false
@@ -23,10 +25,14 @@ export default function loginReducer(state = {
     return {
       ...state,
       errors: action.payload,
-      isLoading: false, 
+      isLoading: false,
       redirect: false
     };
   }
+  case "SET_CURRENT_USER": {
+    return { ...state, user: action.payload };
+  }
+
 
   }
 

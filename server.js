@@ -15,6 +15,7 @@ import webpackDevMiddleware from "webpack-dev-middleware";
 import webpackHotMiddleware from "webpack-hot-middleware";
 import compression from "compression";
 
+
 //local modules
 import User from "./DB/models/User";
 import webpackConfig from "./webpack.config";

@@ -64,7 +64,7 @@ passport.use("local.login", new Strategy({
   passwordField: "password",
   passReqToCallback: true
 }, (req, email, password, done) => {
-  User.findOne({"email": email}, (err, user) => {
+  User.findOne({ "email": email }, (err, user) => {
     if(err) return done(err);
 
     if(!user) return done(null, false, { message: "User does not exist" });
