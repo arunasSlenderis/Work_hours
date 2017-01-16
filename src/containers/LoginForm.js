@@ -31,7 +31,8 @@ class LoginForm extends Component {
 
 // after props changed
   componentDidUpdate() {
-    if(this.props.redirect) this.context.router.push("/");
+    if(this.props.redirect && localStorage.jwtToken)
+      this.context.router.push("dashboard");
   }
 
   render() {

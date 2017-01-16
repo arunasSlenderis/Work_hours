@@ -1,6 +1,8 @@
+import isEmpty from "lodash/isEmpty";
+
 export default function loginReducer(state = {
   user: {},
-  isAuthnticated: false,
+  isAuthenticated: false,
   redirect: false,
   errors: {},
   isLoading: false
@@ -30,7 +32,11 @@ export default function loginReducer(state = {
     };
   }
   case "SET_CURRENT_USER": {
-    return { ...state, user: action.payload };
+    return {
+      ...state,
+      user: action.payload,
+      isAuthenticated: !isEmpty(action.payload)
+    };
   }
 
 

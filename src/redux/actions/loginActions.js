@@ -1,5 +1,5 @@
 import axios from "axios";
-import jwt from "jsonwebtoken";
+import jwtDecode from "jwt-Decode";
 
 import validateInput from "../../../shared/loginValidation";
 import setAuthToken from "../../utils/setAuthToken";
@@ -22,7 +22,7 @@ export function loginRequest(loginData) {
       const token = res.data.token;
       localStorage.setItem("jwtToken", token);
       setAuthToken(token);
-      dispatch(setCurrentUser(jwt.decode(token)));
+      dispatch(setCurrentUser(jwtDecode(token)));
     });
 
     dispatch({
@@ -39,5 +39,13 @@ export function setCurrentUser(user) {
   return {
     type: "SET_CURRENT_USER",
     payload: user
+  };
+}
+
+export function logout() {
+  return dispatch => {
+    localStorage.removeItem("jwtToken");
+    setAuthToken(false);
+    dispatch(setCurrentUser({}));
   };
 }

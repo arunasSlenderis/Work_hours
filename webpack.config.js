@@ -127,10 +127,6 @@ function createConfig(isDebug) {
           exclude: /node_modules/
         }
       ]
-    },
-    node: {
-      net: "empty",
-      dns: "empty"
     }
   };
 }

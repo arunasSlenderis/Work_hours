@@ -17,11 +17,10 @@ import compression from "compression";
 
 
 //local modules
-import User from "./DB/models/User";
 import webpackConfig from "./webpack.config";
-import getAllUsers from "./server/routes/getAllUsers";
 import addUser from "./server/routes/addUser";
 import login from "./server/routes/login";
+import dashboard from "./server/routes/dashboard";
 
 const app = express();
 const compiler = webpack(webpackConfig);
@@ -47,6 +46,8 @@ if(process.env.NODE_ENV.trim() == "development") {
       if (err) {
         return next(err);
       }
+      if(req.url === "/api/dashboard") return next();
+
       res.set("content-type","text/html");
       res.send(result);
       res.end();
@@ -87,9 +88,9 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 //routes
-getAllUsers(app, User); //GET
 addUser(app); //POST
 app.use("/api/login", login); //POST
+app.use("/api/dashboard", dashboard); //GET
 
 app.listen(PORT, () => {
   console.log(`Server is listening on port ${PORT} in ${process.env.NODE_ENV}mode`);

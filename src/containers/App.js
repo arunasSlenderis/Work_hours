@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from "react";
 
-import Navigation from "../components/Navigation";
+import Navigation from "../containers/Navigation";
 
 require("../styles/app.scss");
 
