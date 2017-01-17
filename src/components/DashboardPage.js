@@ -1,13 +1,13 @@
 import React from "react";
 
-import UserList from "../containers/UserList";
+import ProjectsList from "../containers/ProjectsList";
 
 const DashboardPage = () => {
   return (
     <div className="col">
       <div className="col-md-4 col-md-offset-4">
-        <h1>User list</h1>
-        <UserList />
+        <h1>Projects list</h1>
+        <ProjectsList />
       </div>
     </div>
   );

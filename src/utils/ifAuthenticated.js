@@ -29,7 +29,7 @@ export default function(ComposedComponent) {
   const mapStateToProps = state => {
     return {
       isAuthenticated: state.login.isAuthenticated,
-      info: state.users.info
+      info: state.projects.info
     };
   };
 

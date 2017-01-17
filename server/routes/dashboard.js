@@ -1,16 +1,16 @@
 import express from "express";
 
-import User from "../../DB/models/User";
+import Project from "../../DB/models/Project";
 import authenticate from "../middlewares/authenticate";
 
 const router = express.Router();
 
 router.get("/", authenticate, (req, res) => {
-  User.find({}, (err, users) => {
+  Project.find({}, (err, projects) => {
     if(err) {
       res.json(err);
     } else {
-      res.status(200).json(users);
+      res.status(200).json(projects);
     }
   });
 });
