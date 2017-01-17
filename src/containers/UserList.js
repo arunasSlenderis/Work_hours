@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from "react";
 import { connect } from "react-redux";
+import $ from "jquery";
 
 import { getAllUsers } from "../redux/actions/usersActions";
 
@@ -9,15 +10,30 @@ class UserList extends Component {
     this.props.getAllUsers();
   }
 
+  componentDidMount() {
+    $(".alert-info").fadeOut(3000);
+  }
+
   render() {
+    const { info, users } = this.props;
     return (
-      <ul>
+      <div className="row">
         {
-          this.props.users.map(user => {
-            return <li key={ user._id }>{user.name} {user.lastName}</li>;
-          })
+          info.message &&
+          <div className="alert alert-info">
+            { info.message }
+          </div>
         }
-      </ul>
+        <div className="col-md-3">
+          <ul>
+            {
+              users.map(user => {
+                return <li key={ user._id }>{user.name} {user.lastName}</li>;
+              })
+            }
+          </ul>
+        </div>
+      </div>
     );
   }
 
@@ -25,12 +41,14 @@ class UserList extends Component {
 
 UserList.propTypes = {
   users: PropTypes.array.isRequired,
-  getAllUsers: PropTypes.func.isRequired
+  getAllUsers: PropTypes.func.isRequired,
+  info: PropTypes.object
 };
 
 const mapStateToProps = state => {
   return {
-    users: state.users.users
+    users: state.users.users,
+    info: state.users.info
   };
 };
 

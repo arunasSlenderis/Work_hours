@@ -1,5 +1,6 @@
 export default function usersReducer(state = {
-  users: []
+  users: [],
+  info: {}
 }, action) {
   switch(action.type) {
 
