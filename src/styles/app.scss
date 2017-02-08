@@ -1,1 +1,15 @@
+.activeHighlight {
+  background-color: #ddd;
+}
 
+div .vertical-line {
+  width: 0px;
+  height: 10vmax;
+  border-left: 1px solid black;
+  // position: relative;
+  // display: inline-block;
+}
+
+.projectDescription {
+  border: 2px solid red;
+}

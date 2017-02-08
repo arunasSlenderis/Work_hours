@@ -7,7 +7,7 @@ require("../styles/app.scss");
 export default class App extends Component {
   render() {
     return (
-      <div className="container">
+      <div className="container-fluid">
         <Navigation />
         { this.props.children }
       </div>

@@ -1,14 +1,14 @@
 import React from "react";
 
 import ProjectsList from "../containers/ProjectsList";
+import ProjectDescription from "../containers/ProjectDescription";
 
 const DashboardPage = () => {
   return (
-    <div className="col">
-      <div className="col-md-4 col-md-offset-4">
-        <h1>Projects list</h1>
-        <ProjectsList />
-      </div>
+    <div className="row">
+      <ProjectsList />
+      <div className="vertical-line col-xs-1"></div>
+      <ProjectDescription />
     </div>
   );
 };

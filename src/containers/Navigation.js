@@ -10,16 +10,42 @@ class Navigation extends Component {
     this.props.logout();
   }
 
+  addActiveClass(e) {
+    // removes class form links
+    e.target.parentNode.parentNode.childNodes.forEach(li => {
+      return li.childNodes[0].className = "";
+    });
+    //removes active class from Home link
+    document.getElementById("home").className = "navbar-brand";
+
+    e.target.className = "activeHighlight";
+    document.activeElement.blur();
+  }
+
+  removeLinkClass(e) {
+    document.getElementById("mainMenu").childNodes.forEach(li => {
+      return li.childNodes[0].className = "";
+    });
+
+    // add active class to home link
+    e.target.className = "navbar-brand activeHighlight";
+    document.activeElement.blur();
+  }
+
   render() {
     const { isAuthenticated } = this.props.loginData;
 
     const userLinks = (
       <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <ul className="nav navbar-nav">
-          <li className=""><Link to="dashboard">Dashboard</Link></li>
+        <ul id="mainMenu" className="nav navbar-nav">
+          <li>
+            <Link to="dashboard" onClick={ this.addActiveClass.bind(this) }>
+              Dashboard
+            </Link>
+          </li>
         </ul>
         <ul className="nav navbar-nav navbar-right">
-          <li className=""><Link to="#" onClick={ this.logout.bind(this) }>Logout</Link></li>
+          <li><Link to="#" onClick={ this.logout.bind(this) }>Logout</Link></li>
         </ul>
       </div>
     );
@@ -27,7 +53,11 @@ class Navigation extends Component {
     const guestLinks = (
       <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul className="nav navbar-nav navbar-right">
-          <li className=""><Link to="login">Login</Link></li>
+          <li>
+            <Link to="login" onClick={ this.addActiveClass.bind(this) }>
+              Login
+            </Link>
+          </li>
         </ul>
       </div>
     );
@@ -48,7 +78,13 @@ class Navigation extends Component {
               <span className="icon-bar" />
               <span className="icon-bar" />
             </button>
-            <Link className="navbar-brand" to="/">HOME</Link>
+            <Link
+              id="home"
+              onClick={ this.removeLinkClass.bind(this) }
+              className="navbar-brand" to="/"
+            >
+              HOME
+            </Link>
           </div>
           {/* Collect the nav links, forms, and other content for toggling */}
           { isAuthenticated ? userLinks : guestLinks}

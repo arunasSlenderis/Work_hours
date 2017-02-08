@@ -1,0 +1,18 @@
+.projectsList {
+  ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+      padding: 5px 0 5px 3px;
+      width: auto;
+
+      &:hover {
+        background-color: #ddd;
+        border: 2px solid #ccc;
+        cursor: pointer;
+      }
+    }
+  }
+}

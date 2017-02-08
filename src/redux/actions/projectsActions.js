@@ -13,3 +13,16 @@ export function getAllProjects() {
     });
   };
 }
+
+export function projectSelected(projectId) {
+  return {
+    type: "PROJECT_SELECTED",
+    payload: projectId
+  };
+}
+
+export function editProjectUser() {
+  return {
+    type: "EDIT_WORK_TIME_CLICKED"
+  };
+}

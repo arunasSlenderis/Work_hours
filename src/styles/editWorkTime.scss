@@ -1,0 +1,16 @@
+.editWorkTime {
+  border: 1px dashed black;
+  margin-top: 20px;
+  h1 {
+    text-align: center;
+  }
+  .block {
+    display: block;
+  }
+  .update-button {
+    display: block;
+    position: relative;
+    margin: 15px auto;
+    top: 10px;
+  }
+}

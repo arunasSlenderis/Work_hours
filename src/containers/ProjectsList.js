@@ -2,7 +2,9 @@ import React, { Component, PropTypes } from "react";
 import { connect } from "react-redux";
 import $ from "jquery";
 
-import { getAllProjects } from "../redux/actions/projectsActions";
+import { getAllProjects, projectSelected } from "../redux/actions/projectsActions";
+
+require("../styles/projectList.scss");
 
 class ProjectsList extends Component {
 
@@ -14,30 +16,37 @@ class ProjectsList extends Component {
     $(".alert-info").fadeOut(3000);
   }
 
+  selected(id) {
+    this.props.projectSelected(id);
+    // console.log(e.target);
+  }
+
   render() {
     const { info, projects } = this.props;
     return (
-      <div className="row">
+      <div className="col-xs-3 text-center projectsList">
         {
           info.message &&
           <div className="alert alert-info">
             { info.message }
           </div>
         }
-        <div className="col-md-3">
-          <ul>
-            {
-              projects.map(project => {
-                return (
-                  <li key={ project._id }>
-                    {project.name} {project.hoursWorked}
-                  </li>
-                );
 
-              })
-            }
-          </ul>
-        </div>
+        <ul>
+          {
+            projects.map(project => {
+              return (
+                <li
+                  key={ project._id }
+                  onClick={ this.selected.bind(this, project._id) }
+                >
+                  {project.name}
+                </li>
+              );
+
+            })
+          }
+        </ul>
       </div>
     );
   }
@@ -47,6 +56,7 @@ class ProjectsList extends Component {
 ProjectsList.propTypes = {
   projects: PropTypes.array.isRequired,
   getAllProjects: PropTypes.func.isRequired,
+  projectSelected: PropTypes.func.isRequired,
   info: PropTypes.object
 };
 
@@ -57,4 +67,7 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, { getAllProjects })(ProjectsList);
+export default connect(
+  mapStateToProps,
+  { getAllProjects, projectSelected }
+)(ProjectsList);

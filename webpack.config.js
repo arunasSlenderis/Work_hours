@@ -37,7 +37,7 @@ function createConfig(isDebug) {
     plugins.push(
       new webpack.optimize.OccurrenceOrderPlugin(),
       new webpack.HotModuleReplacementPlugin(),
-      new webpack.NoErrorsPlugin()
+      new webpack.NoEmitOnErrorsPlugin()
     );
     devtool = "#eval-source-map";
     appEntry = [
@@ -87,7 +87,8 @@ function createConfig(isDebug) {
         "jquery",
         "classnames",
         "axios",
-        "lodash"
+        "lodash",
+        "moment"
       ]
     },
     output: {
@@ -117,7 +118,7 @@ function createConfig(isDebug) {
           exclude: /node_modules/
         },
         {
-          test: /\.scss$/,
+          test: /\.(scss|css)$/,
           loader,
           include: path.join(__dirname, "src")
         },
