@@ -2,7 +2,8 @@ export default function projectsReducer(state = {
   projects: [],
   info: {},
   projectInfo: { dueDate: " ", name: " " },
-  edit: false
+  edit: false,
+  updatedTimeInfo: []
 }, action) {
   switch(action.type) {
 
@@ -26,6 +27,20 @@ export default function projectsReducer(state = {
 
   case "EDIT_WORK_TIME_CLICKED": {
     return { ...state, edit: true };
+  }
+
+  case "UPDATE_WORK_TIME_FULFILLED": {
+    return {
+      ...state,
+      updatedTimeInfo: action.payload.data,
+      projectInfo: {
+        ...state.projectInfo,
+        hoursWorked: action.payload.data.reduce((acc, time) => {
+          return acc + time.hoursWorked;
+        }, 0)
+      },
+      edit: false
+    };
   }
 
   }

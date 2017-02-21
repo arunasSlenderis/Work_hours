@@ -18,7 +18,6 @@ class ProjectsList extends Component {
 
   selected(id) {
     this.props.projectSelected(id);
-    // console.log(e.target);
   }
 
   render() {

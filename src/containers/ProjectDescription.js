@@ -1,8 +1,8 @@
 import React, { Component, PropTypes } from "react";
 import { connect } from "react-redux";
 
-import EditWorkTime from "../components/EditWorkTime";
-import { editProjectUser } from "../redux/actions/projectsActions";
+import EditWorkTime from "./EditWorkTime";
+import { editProjectUser, updateWorkTime } from "../redux/actions/projectsActions";
 
 require("../styles/projectDescription.scss");
 
@@ -41,7 +41,7 @@ class ProjectDescription extends Component {
             Edit work time
           </button>
         </div>
-        { edit ? <EditWorkTime projectName={ projectInfo.name } /> : "" }
+        { edit ? <EditWorkTime /> : "" }
       </div>
     );
   }
@@ -50,6 +50,7 @@ class ProjectDescription extends Component {
 ProjectDescription.propTypes = {
   projectInfo: PropTypes.object.isRequired,
   editProjectUser: PropTypes.func.isRequired,
+  updateWorkTime: PropTypes.func.isRequired,
   edit: PropTypes.bool.isRequired
 };
 
@@ -60,4 +61,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, { editProjectUser })(ProjectDescription);
+export default connect(mapStateToProps, { editProjectUser, updateWorkTime })(ProjectDescription);

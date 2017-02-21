@@ -21,11 +21,22 @@ const userSchema = mongoose.Schema({
     type: String,
     required: true
   },
-  userType:{
+  userType: {
     type: String,
     default: "user",
     trim: true
-  }
+  },
+  projects: [
+    {
+      id: String,
+      time: [
+        {
+          date: String,
+          hoursWorked: Number
+        }
+      ]
+    }
+  ]
 });
 
 

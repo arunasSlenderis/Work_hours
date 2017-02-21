@@ -91,6 +91,7 @@ app.use(passport.session());
 addUser(app); //POST
 app.use("/api/login", login); //POST
 app.use("/api/dashboard", dashboard); //GET
+app.use("/api/dashboard/updateWorkTime", dashboard); //PUT
 
 app.listen(PORT, () => {
   console.log(`Server is listening on port ${PORT} in ${process.env.NODE_ENV}mode`);

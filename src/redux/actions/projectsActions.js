@@ -14,6 +14,20 @@ export function getAllProjects() {
   };
 }
 
+export function updateWorkTime(data) {  //userId, projectId
+  return dispatch => {
+    const request = axios.put("/api/dashboard/updateWorkTime", data);
+
+    dispatch({
+      type: "UPDATE_WORK_TIME",
+      payload: request
+    })
+    .catch(() => {
+      console.error("Failed to update work time");
+    });
+  };
+}
+
 export function projectSelected(projectId) {
   return {
     type: "PROJECT_SELECTED",
