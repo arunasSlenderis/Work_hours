@@ -1,0 +1,32 @@
+
+ul.assign-projects-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 20px 0;
+  max-height: 130px;
+  overflow-y: auto;
+
+  li {
+    padding: 5px 0 5px 3px;
+    width: auto;
+
+    &:hover {
+      background-color: #ddd;
+      border: 2px solid #ccc;
+      cursor: pointer;
+    }
+  }
+  .check-project {
+    position: relative;
+    float: right;
+    right: 20px;
+  }
+}
+
+@media screen and (max-width: 411px) {
+  ul.list {
+    .check-project {
+      right: 3px;
+    }
+  }
+}

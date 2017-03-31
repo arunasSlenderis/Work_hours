@@ -1,14 +1,19 @@
 import isEmpty from "lodash/isEmpty";
 
-export default function loginReducer(state = {
+const defaultState = {
   user: {},
   isAuthenticated: false,
   redirect: false,
   errors: {},
   isLoading: false
-}, action) {
+};
+
+export default function loginReducer(state = defaultState, action) {
   switch(action.type) {
 
+  case "CLEAR_ERRORS":{
+    return { ...state, errors: {} };
+  }
   case "LOGIN_REQUEST_PENDING": {
     return { ...state, isLoading: true };
   }

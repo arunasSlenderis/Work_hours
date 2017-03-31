@@ -4,12 +4,10 @@ import $ from "jquery";
 
 import { getAllProjects, projectSelected } from "../redux/actions/projectsActions";
 
-require("../styles/projectList.scss");
-
 class ProjectsList extends Component {
 
   componentWillMount() {
-    this.props.getAllProjects();
+    this.props.getAllProjects(this.props.user.id);
   }
 
   componentDidMount() {
@@ -23,7 +21,7 @@ class ProjectsList extends Component {
   render() {
     const { info, projects } = this.props;
     return (
-      <div className="col-xs-3 text-center projectsList">
+      <div className="col-sm-3 col-xs-11 text-center list">
         {
           info.message &&
           <div className="alert alert-info">
@@ -34,14 +32,17 @@ class ProjectsList extends Component {
         <ul>
           {
             projects.map(project => {
-              return (
-                <li
-                  key={ project._id }
-                  onClick={ this.selected.bind(this, project._id) }
-                >
-                  {project.name}
-                </li>
-              );
+              if(project !== null) {
+                return (
+                  <li
+                    key={ project._id }
+                    onClick={ this.selected.bind(this, project._id) }
+                  >
+                    {project.name}
+                  </li>
+                );
+              }
+
 
             })
           }
@@ -56,13 +57,15 @@ ProjectsList.propTypes = {
   projects: PropTypes.array.isRequired,
   getAllProjects: PropTypes.func.isRequired,
   projectSelected: PropTypes.func.isRequired,
-  info: PropTypes.object
+  info: PropTypes.object,
+  user: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => {
   return {
     projects: state.projects.projects,
-    info: state.projects.info
+    info: state.projects.info,
+    user: state.login.user
   };
 };
 

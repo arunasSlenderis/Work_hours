@@ -16,7 +16,6 @@ export function loginRequest(loginData) {
 
   return dispatch => {
     const request = axios.post("/api/login", loginData);
-
     // saving token to local storage
     request.then(res => {
       const token = res.data.token;
@@ -42,10 +41,20 @@ export function setCurrentUser(user) {
   };
 }
 
+export function clearErrors() {
+  return { type: "CLEAR_ERRORS" };
+}
+
 export function logout() {
   return dispatch => {
     localStorage.removeItem("jwtToken");
     setAuthToken(false);
     dispatch(setCurrentUser({}));
+  };
+}
+
+export function clearState() {
+  return {
+    type: "CLEAR_STATE"
   };
 }

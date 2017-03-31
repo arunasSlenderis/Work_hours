@@ -18,7 +18,8 @@ router.post("/", (req, res, next) => {
         // creating jwt token
         const token = jwt.sign({
           id: user._id,
-          username: user.email
+          username: user.email,
+          userType: user.userType
         }, config.jwtSecret);
         res.json({ token });
       }

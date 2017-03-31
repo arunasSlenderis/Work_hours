@@ -6,7 +6,6 @@ import { connect } from "react-redux";
 import { updateWorkTime, getAllProjects } from "../redux/actions/projectsActions";
 
 require("../styles/datepicker/react-datepicker.css");
-require("../styles/editWorkTime.scss");
 
 class EditWorkTime extends Component {
   constructor() {
@@ -47,33 +46,37 @@ class EditWorkTime extends Component {
   }
 
   componentWillUnmount() {
-    this.props.getAllProjects();
+    this.props.getAllProjects(this.props.user.id);
   }
 
   render() {
     return (
       <div className="row editWorkTime">
+
         <h1>{ this.props.projectInfo.name }</h1>
-        <div className="col-xs-4 col-xs-offset-1">
-          <label className="block" htmlFor="date">Date:</label>
-          <DatePicker
-            id="date"
-            className="block"
-            dateFormat="YYYY-MM-DD"
-            selected={ this.state.startDate }
-            onChange={ this.handleChange }
-          />
-        </div>
-        <div className="col-xs-4 col-xs-offset-2">
-          <label htmlFor="hours">Hours worked:</label>
-          <input
-            id="hours"
-            className="block"
-            type="number"
-            min={0}
-            value={ this.state.hours }
-            onChange={ this.setTime }
-          />
+        <div className="updateForm">
+          <div className="col-xs-4">
+            <label style={{"display": "block"}} htmlFor="date">Date:</label>
+            <DatePicker
+              id="date"
+              className="form-control date"
+              dateFormat="YYYY-MM-DD"
+              selected={ this.state.startDate }
+              onChange={ this.handleChange }
+              calendarClassName="calendor"
+            />
+          </div>
+          <div className="col-xs-4">
+            <label htmlFor="hours">Hours worked:</label>
+            <input
+              id="hours"
+              className="form-control"
+              type="number"
+              min={0}
+              value={ this.state.hours }
+              onChange={ this.setTime }
+            />
+          </div>
         </div>
         <button
           className="btn btn-primary update-button"

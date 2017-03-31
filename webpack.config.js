@@ -39,7 +39,7 @@ function createConfig(isDebug) {
       new webpack.HotModuleReplacementPlugin(),
       new webpack.NoEmitOnErrorsPlugin()
     );
-    devtool = "#eval-source-map";
+    devtool = "#source-map";
     appEntry = [
       "webpack-hot-middleware/client",
       path.join(__dirname, "src", "index.js")

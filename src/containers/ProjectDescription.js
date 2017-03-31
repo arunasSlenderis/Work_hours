@@ -12,9 +12,16 @@ class ProjectDescription extends Component {
   }
 
   render() {
-    const { projectInfo, edit } = this.props;
+    const { projectInfo, edit, message } = this.props;
     return (
-      <div className="col-xs-8">
+      <div className="col-sm-8">
+        {
+          message.message ?
+          <div className="alert alert-info">
+            { message.message }
+          </div> :
+          ""
+        }
         <div className="row">
           <table className="table table-hover">
             <thead>
@@ -37,6 +44,7 @@ class ProjectDescription extends Component {
           <button
             className="btn btn-primary edit-button"
             onClick={ this.editWorkTime.bind(this) }
+            disabled={ message.message }
           >
             Edit work time
           </button>
@@ -51,13 +59,15 @@ ProjectDescription.propTypes = {
   projectInfo: PropTypes.object.isRequired,
   editProjectUser: PropTypes.func.isRequired,
   updateWorkTime: PropTypes.func.isRequired,
-  edit: PropTypes.bool.isRequired
+  edit: PropTypes.bool.isRequired,
+  message: PropTypes.object
 };
 
 const mapStateToProps = state => {
   return {
     projectInfo: state.projects.projectInfo,
-    edit: state.projects.edit
+    edit: state.projects.edit,
+    message: state.projects.messages
   };
 };
 

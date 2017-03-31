@@ -1,0 +1,72 @@
+.edit-button-user-list {
+  margin-top: 10px;
+}
+.assign-project-button {
+  margin-top: 10px;
+  margin-left: 10px;
+}
+.delete-user-button {
+  margin-top: 10px;
+  margin-left: 10px;
+}
+#projectList {
+  margin-left: 10px;
+}
+#editForm {
+  margin-top: 40px;
+
+  .textField {
+    width: 50%;
+    display: inline;
+    margin-left: 10px;
+  }
+  label[for="email"] {
+    margin-right: 29px;
+  }
+  .radio {
+    font-weight: bold;
+  }
+}
+
+div.users-list {
+  // margin-right: 10px;
+}
+
+@media screen and (max-width: 768px) and (min-width: 749px) {
+  div.users-list {
+    margin-left: 30px;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .users-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .list {
+      margin-bottom: 20px;
+
+    }
+  }
+}
+
+@media screen and (max-width: 411px) {
+  #projectList {
+    // margin-left: 0;
+  }
+  div.user-list-btn {
+    display: flex;
+    flex-direction: column;
+    // max-width: 100%;
+
+    .assign-project-button, .delete-user-button {
+      margin-left: 0;
+    }
+
+  }
+
+  .user-description {
+    max-width: 100%;
+  }
+}

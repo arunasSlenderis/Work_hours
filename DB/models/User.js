@@ -29,6 +29,7 @@ const userSchema = mongoose.Schema({
   projects: [
     {
       id: String,
+      name: String,
       time: [
         {
           date: String,

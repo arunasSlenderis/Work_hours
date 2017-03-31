@@ -2,15 +2,17 @@ import React, { Component, PropTypes } from "react";
 import { Link } from "react-router";
 import { connect } from "react-redux";
 
-import { logout } from "../redux/actions/loginActions";
+import { logout, clearState, clearErrors } from "../redux/actions/loginActions";
 
 class Navigation extends Component {
   logout(e) {
     e.preventDefault();
     this.props.logout();
+    this.props.clearState();
   }
 
   addActiveClass(e) {
+    this.props.clearErrors();
     // removes class form links
     e.target.parentNode.parentNode.childNodes.forEach(li => {
       return li.childNodes[0].className = "";
@@ -33,7 +35,7 @@ class Navigation extends Component {
   }
 
   render() {
-    const { isAuthenticated } = this.props.loginData;
+    const { isAuthenticated, user } = this.props.loginData;
 
     const userLinks = (
       <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -62,8 +64,49 @@ class Navigation extends Component {
       </div>
     );
 
+    const adminLinks = (
+      <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul id="mainMenu" className="nav navbar-nav">
+          <li>
+            <Link to="dashboard" onClick={ this.addActiveClass.bind(this) }>
+              Dashboard
+            </Link>
+          </li>
+          <li>
+            <Link to="addUser" onClick={ this.addActiveClass.bind(this) }>
+              Add User
+            </Link>
+          </li>
+          <li>
+            <Link to="addProject" onClick={ this.addActiveClass.bind(this) }>
+              Add Project
+            </Link>
+          </li>
+          <li>
+            <Link
+              to="userList"
+              onClick={ this.addActiveClass.bind(this) }
+            >
+              Users List
+            </Link>
+          </li>
+          <li>
+            <Link
+              to="manageProjects"
+              onClick={ this.addActiveClass.bind(this) }
+            >
+              Manage Projects
+            </Link>
+          </li>
+        </ul>
+        <ul className="nav navbar-nav navbar-right">
+          <li><Link to="#" onClick={ this.logout.bind(this) }>Logout</Link></li>
+        </ul>
+      </div>
+    );
+
     return (
-      <nav className="navbar navbar-default">
+      <nav className="navbar navbar-inverse">
         <div className="container-fluid">
           <div className="navbar-header">
             <button
@@ -86,8 +129,12 @@ class Navigation extends Component {
               HOME
             </Link>
           </div>
-          {/* Collect the nav links, forms, and other content for toggling */}
-          { isAuthenticated ? userLinks : guestLinks}
+          {/* If user is not admin shows only dashboard link */}
+          {
+            isAuthenticated && user.userType === "admin" ?
+            adminLinks : isAuthenticated ?
+            userLinks : guestLinks
+          }
         </div>
       </nav>
     );
@@ -96,7 +143,9 @@ class Navigation extends Component {
 
 Navigation.propTypes = {
   loginData: PropTypes.object.isRequired,
-  logout: PropTypes.func.isRequired
+  logout: PropTypes.func.isRequired,
+  clearState: PropTypes.func.isRequired,
+  clearErrors: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => {
@@ -105,4 +154,8 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, { logout })(Navigation);
+export default connect(mapStateToProps, {
+  logout,
+  clearState,
+  clearErrors
+})(Navigation);

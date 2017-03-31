@@ -2,7 +2,7 @@ import React, { PropTypes } from "react";
 import classnames from "classnames";
 
 const TextField = ({
-  htmlFor, label, type, placeholder, name, onChange, error
+  htmlFor, label, type, placeholder, name, onChange, error, defaultValue, value
 }) => {
   return (
     <div className={ classnames("form-group", { "has-error": error }) }>
@@ -13,11 +13,13 @@ const TextField = ({
       </label>
       <input
         type={ type }
-        className="form-control"
+        className="form-control textField"
         id={ htmlFor }
         placeholder={ placeholder }
         name={ name }
         onChange={ onChange }
+        defaultValue={ defaultValue }
+        value={ value }
       />
     { error && <span className="help-block">{ error }</span> }
     </div>
@@ -27,11 +29,13 @@ const TextField = ({
 TextField.propTypes = {
   type: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
-  placeholder: PropTypes.string.isRequired,
+  placeholder: PropTypes.string,
   name: PropTypes.string.isRequired,
   htmlFor: PropTypes.string.isRequired,
   onChange: PropTypes.func,
-  error: PropTypes.string
+  error: PropTypes.string,
+  defaultValue: PropTypes.string,
+  value: PropTypes.string
 };
 
 TextField.defaultProps = {

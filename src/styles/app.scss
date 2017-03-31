@@ -1,15 +1,72 @@
 .activeHighlight {
-  background-color: #ddd;
+  background-color: rgb(238, 232, 213);
 }
 
 div .vertical-line {
   width: 0px;
   height: 10vmax;
   border-left: 1px solid black;
-  // position: relative;
-  // display: inline-block;
 }
 
-.projectDescription {
-  border: 2px solid red;
+.full-height {
+  height: 100vh;
+}
+
+.nav {
+  text-align: center;
+}
+nav.navbar {
+  border-width: 0;
+}
+
+div.list {
+  max-height: calc(100vh - 72px); /*header plus margin plus border = 72px*/
+  overflow-y: auto;
+  margin-right: 10px;
+  ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+      padding: 5px 0 5px 3px;
+      width: 100%;
+      margin: 3px 0;
+      background: rgb(214, 227, 185);
+
+      &:hover {
+        background-color: rgb(233, 240, 217);
+        border: 2px solid rgb(102,128,49);
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+html, .app {
+  background: rgb(238, 232, 213);
+}
+
+input {
+  background: rgb(253, 255, 240) !important;
+}
+
+div.react-datepicker__month-container {
+  width: 170px;
+  font-size: 1.1rem;
+}
+div.react-datepicker__current-month {
+  font-size: 1.1rem;
+
+}
+
+@media screen and (max-width: 768px) {
+  div.list {
+    margin-right: 0;
+  }
+}
+
+.selected {
+  background-color: rgb(233, 240, 217) !important;
+  border: 2px solid rgb(102,128,49);
 }

@@ -12,13 +12,14 @@ const projectSchema = mongoose.Schema({
     trim: true
   },
   dueDate: {
-    type: Date,
+    type: String,
     required: true,
-    default: Date.now
+    default: String(Date.now).substr(0, 10)
   },
   hoursWorked: {
     type: Number,
-    required: true
+    required: true,
+    default: 0
   }
 });
 

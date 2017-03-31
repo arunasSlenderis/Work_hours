@@ -19,8 +19,12 @@ import compression from "compression";
 //local modules
 import webpackConfig from "./webpack.config";
 import addUser from "./server/routes/addUser";
+import addProject from "./server/routes/addProject";
 import login from "./server/routes/login";
 import dashboard from "./server/routes/dashboard";
+import projects from "./server/routes/projects";
+import usersList from "./server/routes/usersList";
+import manageProjects from "./server/routes/manageProjects";
 
 const app = express();
 const compiler = webpack(webpackConfig);
@@ -39,6 +43,11 @@ if(process.env.NODE_ENV.trim() == "development") {
   //   res.sendFile(__dirname, "src", "index.html");
   // });
 
+  app.use(bodyParser.json());
+  app.use(bodyParser.urlencoded({ extended: true }));
+
+  app.use("/api/dashboard", dashboard); //GET
+  app.use("/api/projects", projects); //GET
   // for different routes than "/" to be able to reload page and not get error
   app.get("/*", function (req, res, next) {
     const filename = path.join(compiler.outputPath, "index.html");
@@ -46,7 +55,7 @@ if(process.env.NODE_ENV.trim() == "development") {
       if (err) {
         return next(err);
       }
-      if(req.url === "/api/dashboard") return next();
+      if(req.url === "/api/dashboard" || req.url === "/api/usersList") return next();
 
       res.set("content-type","text/html");
       res.send(result);
@@ -69,9 +78,6 @@ const MongoStore = connectMongo(session); //for production
 
 const PORT = process.env.PORT || 3001;
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-
 require("./server/config/passport");
 
 app.use(expressValidator());
@@ -88,9 +94,16 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 //routes
-addUser(app); //POST
+app.use("/api/addUser", addUser); //POST
+app.use("/api/addProject", addProject); //POST
 app.use("/api/login", login); //POST
-app.use("/api/dashboard", dashboard); //GET
+app.use("/api/usersList", usersList); //GET
+app.use("/api/usersList/updateUser", usersList); //PUT
+app.use("/api/usersList/deleteUser", usersList); //DELETE
+app.use("/api/manageProjects/deleteProject", manageProjects); //DELETE
+app.use("/api/manageProjects/updateProject", manageProjects); //PUT
+app.use("/api/usersList/assignProjects", usersList); //PUT
+
 app.use("/api/dashboard/updateWorkTime", dashboard); //PUT
 
 app.listen(PORT, () => {
