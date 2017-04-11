@@ -8,6 +8,7 @@
     "start": "SET NODE_ENV=production & node dist/server/server.js",
     "webpack": "node_modules/.bin/webpack",
     "removeDist": "rimraf dist",
+    "buildServer": "webpack --config webpack.server.config.js",
     "build": "rimraf dist && SET NODE_ENV=production & webpack",
     "dev": "SET NODE_ENV=development & nodemon server.js --exec babel-node --ignore src"
   },

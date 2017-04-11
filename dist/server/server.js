@@ -2567,7 +2567,11 @@ if(process.env.NODE_ENV.trim() == "production") {
 
 __WEBPACK_IMPORTED_MODULE_5_mongoose___default.a.Promise = global.Promise;
 // mongoose.connect("mongodb://localhost/workRecords"); DEV
-__WEBPACK_IMPORTED_MODULE_5_mongoose___default.a.connect("mongodb://heroku_64qm85gh:ha8thplldf7djjlpbkrqf6r5pv@ds159050.mlab.com:59050/heroku_64qm85gh"); //prod
+__WEBPACK_IMPORTED_MODULE_5_mongoose___default.a.connect("mongodb://heroku_64qm85gh:ha8thplldf7djjlpbkrqf6r5pv@ds159050.mlab.com:59050/heroku_64qm85gh", err => {
+  if(!err) {
+    console.log("Mongo connected");
+  }
+}); //prod
 
 const MongoStore = __WEBPACK_IMPORTED_MODULE_6_connect_mongo___default()(__WEBPACK_IMPORTED_MODULE_2_express_session___default.a); //for production
 
