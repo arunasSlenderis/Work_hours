@@ -10,15 +10,15 @@ import connectMongo from "connect-mongo"; //for production
 // import flash from "connect-flash";
 import passport from "passport";
 import path from "path";
-import webpack from "webpack";
-import webpackDevMiddleware from "webpack-dev-middleware";
-import webpackHotMiddleware from "webpack-hot-middleware";
+// import webpack from "webpack";
+// import webpackDevMiddleware from "webpack-dev-middleware";
+// import webpackHotMiddleware from "webpack-hot-middleware";
 import compression from "compression";
 import fs from "fs";
 
 
 //local modules
-import webpackConfig from "./webpack.config";
+// import webpackConfig from "./webpack.config";
 import addUser from "./server/routes/addUser";
 import addProject from "./server/routes/addProject";
 import login from "./server/routes/login";
@@ -28,7 +28,7 @@ import usersList from "./server/routes/usersList";
 import manageProjects from "./server/routes/manageProjects";
 
 const app = express();
-const compiler = webpack(webpackConfig);
+// const compiler = webpack(webpackConfig);
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -36,33 +36,33 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use("/api/dashboard", dashboard); //GET
 app.use("/api/projects", projects); //GET
 
-if(process.env.NODE_ENV.trim() == "development") {
-  app.use(webpackDevMiddleware(compiler, {
-    hot: true,
-    noInfo: true,
-    stats: {
-      colors: true
-    }
-  }));
-  app.use(webpackHotMiddleware(compiler));
-
-  // for different routes than "/" to be able to reload page and not get error
-  app.get("/*", function (req, res, next) {
-    const filename = path.join(compiler.outputPath, "index.html");
-    compiler.outputFileSystem.readFile(filename, function(err, result){
-      if (err) {
-        return next(err);
-      }
-      if(req.url === "/api/dashboard" || req.url === "/api/usersList") return next();
-
-      res.set("content-type","text/html");
-      res.send(result);
-      res.end();
-    });
-  });
-
-  app.use(logger("dev"));
-}
+// if(process.env.NODE_ENV.trim() == "development") {
+//   app.use(webpackDevMiddleware(compiler, {
+//     hot: true,
+//     noInfo: true,
+//     stats: {
+//       colors: true
+//     }
+//   }));
+//   app.use(webpackHotMiddleware(compiler));
+//
+//   // for different routes than "/" to be able to reload page and not get error
+//   app.get("/*", function (req, res, next) {
+//     const filename = path.join(compiler.outputPath, "index.html");
+//     compiler.outputFileSystem.readFile(filename, function(err, result){
+//       if (err) {
+//         return next(err);
+//       }
+//       if(req.url === "/api/dashboard" || req.url === "/api/usersList") return next();
+//
+//       res.set("content-type","text/html");
+//       res.send(result);
+//       res.end();
+//     });
+//   });
+//
+//   app.use(logger("dev"));
+// }
 
 if(process.env.NODE_ENV.trim() == "production") {
   app.use(compression());
