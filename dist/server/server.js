@@ -2553,6 +2553,8 @@ if(process.env.NODE_ENV.trim() == "production") {
   app.get("/*", function (req, res, next) {
     const filename = __WEBPACK_IMPORTED_MODULE_8_path___default.a.join(__dirname, "index.html");
     console.log("FILENAME: ",filename);
+    console.log("DIRNAME: ",__dirname);
+
     __WEBPACK_IMPORTED_MODULE_10_fs___default.a.readFile(filename, function(err, result){
       if (err) {
         return next(err);
