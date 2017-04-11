@@ -69,7 +69,7 @@ if(process.env.NODE_ENV.trim() == "production") {
   app.use(express.static(path.join(__dirname, "dist")));
 
   app.get("/*", function (req, res, next) {
-    const filename = path.join(__dirname, "dist", "index.html");
+    const filename = path.join(__dirname, "index.html");
     fs.readFile(filename, function(err, result){
       if (err) {
         return next(err);
