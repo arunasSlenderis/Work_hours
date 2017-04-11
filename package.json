@@ -4,7 +4,8 @@
   "description": "Working time record for projects",
   "main": "server.js",
   "scripts": {
-    "start": "SET NODE_ENV=production & babel-node server.js",
+    "serve": "SET NODE_ENV=production & babel-node server.js",
+    "start": "SET NODE_ENV=production & node dist/server/server.js",
     "webpack": "node_modules/.bin/webpack",
     "removeDist": "rimraf dist",
     "build": "rimraf dist && SET NODE_ENV=production & webpack",
