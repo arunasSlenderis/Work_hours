@@ -14,7 +14,7 @@ import path from "path";
 // import webpackDevMiddleware from "webpack-dev-middleware";
 // import webpackHotMiddleware from "webpack-hot-middleware";
 import compression from "compression";
-import fs from "fs";
+// import fs from "fs";
 
 
 //local modules
@@ -68,22 +68,22 @@ if(process.env.NODE_ENV.trim() == "production") {
   app.use(compression());
   app.use(express.static(path.join(__dirname, "dist")));
 
-  app.get("/*", function (req, res, next) {
-    const filename = path.join(__dirname, "index.html");
-    console.log("FILENAME: ",filename);
-    console.log("DIRNAME: ",__dirname);
-
-    fs.readFile(filename, function(err, result){
-      if (err) {
-        return next(err);
-      }
-      if(req.url === "/api/dashboard" || req.url === "/api/usersList") return next();
-
-      res.set("content-type","text/html");
-      res.send(result);
-      res.end();
-    });
-  });
+  // app.get("/*", function (req, res, next) {
+  //   const filename = path.join(__dirname, "index.html");
+  //   console.log("FILENAME: ",filename);
+  //   console.log("DIRNAME: ",__dirname);
+  //
+  //   fs.readFile(filename, function(err, result){
+  //     if (err) {
+  //       return next(err);
+  //     }
+  //     if(req.url === "/api/dashboard" || req.url === "/api/usersList") return next();
+  //
+  //     res.set("content-type","text/html");
+  //     res.send(result);
+  //     res.end();
+  //   });
+  // });
 }
 
 mongoose.Promise = global.Promise;
