@@ -85,7 +85,11 @@ if(process.env.NODE_ENV.trim() == "production") {
 
 mongoose.Promise = global.Promise;
 // mongoose.connect("mongodb://localhost/workRecords"); DEV
-mongoose.connect("mongodb://heroku_64qm85gh:ha8thplldf7djjlpbkrqf6r5pv@ds159050.mlab.com:59050/heroku_64qm85gh"); //prod
+mongoose.connect("mongodb://heroku_64qm85gh:ha8thplldf7djjlpbkrqf6r5pv@ds159050.mlab.com:59050/heroku_64qm85gh", err => {
+  if(!err) {
+    console.log("Mongo connected");
+  }
+}); //prod
 
 const MongoStore = connectMongo(session); //for production
 
