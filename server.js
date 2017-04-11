@@ -1,7 +1,7 @@
 //npm modules
 import express from "express";
 import bodyParser from "body-parser";
-import logger from "morgan";
+// import logger from "morgan";
 import session from "express-session";
 import cookie from "cookie-parser";
 import expressValidator from "express-validator";
@@ -14,6 +14,7 @@ import webpack from "webpack";
 import webpackDevMiddleware from "webpack-dev-middleware";
 import webpackHotMiddleware from "webpack-hot-middleware";
 import compression from "compression";
+import fs from "fs";
 
 
 //local modules
@@ -29,6 +30,12 @@ import manageProjects from "./server/routes/manageProjects";
 const app = express();
 const compiler = webpack(webpackConfig);
 
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use("/api/dashboard", dashboard); //GET
+app.use("/api/projects", projects); //GET
+
 if(process.env.NODE_ENV.trim() == "development") {
   app.use(webpackDevMiddleware(compiler, {
     hot: true,
@@ -39,15 +46,6 @@ if(process.env.NODE_ENV.trim() == "development") {
   }));
   app.use(webpackHotMiddleware(compiler));
 
-  // app.get("/*", (req, res) => {
-  //   res.sendFile(__dirname, "src", "index.html");
-  // });
-
-  app.use(bodyParser.json());
-  app.use(bodyParser.urlencoded({ extended: true }));
-
-  app.use("/api/dashboard", dashboard); //GET
-  app.use("/api/projects", projects); //GET
   // for different routes than "/" to be able to reload page and not get error
   app.get("/*", function (req, res, next) {
     const filename = path.join(compiler.outputPath, "index.html");
@@ -69,6 +67,20 @@ if(process.env.NODE_ENV.trim() == "development") {
 if(process.env.NODE_ENV.trim() == "production") {
   app.use(compression());
   app.use(express.static(path.join(__dirname, "dist")));
+
+  app.get("/*", function (req, res, next) {
+    const filename = path.join(__dirname, "dist", "index.html");
+    fs.readFile(filename, function(err, result){
+      if (err) {
+        return next(err);
+      }
+      if(req.url === "/api/dashboard" || req.url === "/api/usersList") return next();
+
+      res.set("content-type","text/html");
+      res.send(result);
+      res.end();
+    });
+  });
 }
 
 mongoose.Promise = global.Promise;

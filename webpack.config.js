@@ -107,10 +107,11 @@ function createConfig(isDebug) {
           include: [
             path.join(__dirname, "src"),
             path.join(__dirname, "shared")
-          ],
-          query: {
-            presets: ["react-hmre"]
-          }
+          ]
+          /*DEV only*/
+          // query: {
+          //   presets: ["react-hmre"]
+          // }
         },
         {
           test: /\.js$/,
@@ -132,4 +133,4 @@ function createConfig(isDebug) {
   };
 }
 
-module.exports = createConfig(true);
+module.exports = createConfig(false);

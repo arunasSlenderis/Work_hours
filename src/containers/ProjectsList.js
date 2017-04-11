@@ -21,7 +21,6 @@ class ProjectsList extends Component {
 
   render() {
     const { info, projects } = this.props;
-    console.log(projects);
     return (
       <div className="col-sm-3 col-xs-11 text-center list">
         {
