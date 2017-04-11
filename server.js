@@ -103,6 +103,7 @@ app.use("/api/usersList/deleteUser", usersList); //DELETE
 app.use("/api/manageProjects/deleteProject", manageProjects); //DELETE
 app.use("/api/manageProjects/updateProject", manageProjects); //PUT
 app.use("/api/usersList/assignProjects", usersList); //PUT
+app.use("/api/updateHours", projects); //PUT
 
 app.use("/api/dashboard/updateWorkTime", dashboard); //PUT
 

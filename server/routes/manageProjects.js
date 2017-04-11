@@ -54,13 +54,35 @@ router.put("/", authenticate, (req, res) => {
       project.client = client;
       project.dueDate = dueDate;
 
-      project.save(err => {
+      User.find({}, (err, users) => {
         if(err) {
           res.status(400).json(err);
+        }
+        if(!users) {
+          res.status(404).json({ message: "No users have been found" });
         } else {
-          res.json({ message: "Project has been updated" });
+          users.forEach((user, index, array) => {
+            user.projects.forEach(project => {
+              if(String(project._id) === projectID) {
+                project.name = projectName;
+                user.save();
+              }
+            });
+
+            if(index === array.length - 1) {
+              project.save(err => {
+                if(err) {
+                  res.status(400).json(err);
+                } else {
+                  res.json({ message: "Project has been updated" });
+                }
+              });
+            }
+          });
         }
       });
+
+
     }
   });
 });

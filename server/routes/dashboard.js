@@ -7,22 +7,39 @@ import authenticate from "../middlewares/authenticate";
 const router = express.Router();
 
 router.get("/", authenticate, (req, res) => {
+  const hours = [];
   User.findOne({ _id: req.query.id }, (err, user) => {
     if(err) {
       res.status(400).json(err);
     }
     if(user) {
       if(user.projects.length > 0) {
-
         const assignedProjects = [];
 
-        user.projects.forEach((userProject, index, array) => {
+        user.projects.forEach((userProject, index, array) => { //do not search forEach project
+
           Project.findOne({_id: userProject._id}, (err, project) => {
             if(err) {
               res.status(400).json(err);
             }
             // if(project) {
-            assignedProjects.push(project);
+            if(userProject.time.length > 0) {
+              userProject.time.forEach((timeObj, index, array) => {
+                hours.push(timeObj.hoursWorked);
+
+                if(index === array.length - 1) {
+                  assignedProjects.push({
+                    project,
+                    additionalData: "pending"
+                  });
+                }
+              });
+            } else {
+              assignedProjects.push({
+                project,
+                additionalData: 0
+              });
+            }
 
             if(index === array.length - 1) {
               res.json(assignedProjects);
@@ -85,6 +102,30 @@ router.put("/updateWorkTime", authenticate, (req, res) => {
           }
         });
       }
+    }
+  });
+});
+
+router.put("/selected", authenticate, (req, res) => {
+  const { id, userID } = req.body;
+  let hours = 0;
+  User.findOne({ _id: userID }, (err, user) => {
+    if(err) {
+      res.status(400).json(err);
+    }
+    if(!user) {
+      res.status(404).json({ message: "User not found" });
+    } else {
+      const selectedProject = user.projects.find(project => {
+        return String(project._id) === id;
+      });
+    selectedProject.time.forEach((project, index, array) => {
+      hours += project.hoursWorked;
+
+      if(index === array.length - 1) {
+        res.json(hours);
+      }
+    });
     }
   });
 });

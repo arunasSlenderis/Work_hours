@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from "react";
 import { connect } from "react-redux";
 import $ from "jquery";
 
-import { getAllProjects, projectSelected } from "../redux/actions/projectsActions";
+import { getAllProjects, projectSelected, updateHours } from "../redux/actions/projectsActions";
 
 class ProjectsList extends Component {
 
@@ -16,10 +16,12 @@ class ProjectsList extends Component {
 
   selected(id) {
     this.props.projectSelected(id);
+    this.props.updateHours({id, userID: this.props.user.id});
   }
 
   render() {
     const { info, projects } = this.props;
+    console.log(projects);
     return (
       <div className="col-sm-3 col-xs-11 text-center list">
         {
@@ -35,10 +37,10 @@ class ProjectsList extends Component {
               if(project !== null) {
                 return (
                   <li
-                    key={ project._id }
-                    onClick={ this.selected.bind(this, project._id) }
+                    key={ project.project._id }
+                    onClick={ this.selected.bind(this, project.project._id) }
                   >
-                    {project.name}
+                    {project.project.name}
                   </li>
                 );
               }
@@ -58,7 +60,8 @@ ProjectsList.propTypes = {
   getAllProjects: PropTypes.func.isRequired,
   projectSelected: PropTypes.func.isRequired,
   info: PropTypes.object,
-  user: PropTypes.object.isRequired
+  user: PropTypes.object.isRequired,
+  updateHours: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => {
@@ -71,5 +74,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { getAllProjects, projectSelected }
+  { getAllProjects, projectSelected, updateHours }
 )(ProjectsList);

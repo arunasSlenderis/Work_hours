@@ -90,14 +90,18 @@ class Navigation extends Component {
               Users List
             </Link>
           </li>
-          <li>
-            <Link
-              to="manageProjects"
-              onClick={ this.addActiveClass.bind(this) }
-            >
-              Manage Projects
-            </Link>
-          </li>
+          {
+            this.props.projects.length > 0 &&
+            <li>
+              <Link
+                to="manageProjects"
+                onClick={ this.addActiveClass.bind(this) }
+              >
+                Manage Projects
+              </Link>
+            </li>
+          }
+
         </ul>
         <ul className="nav navbar-nav navbar-right">
           <li><Link to="#" onClick={ this.logout.bind(this) }>Logout</Link></li>
@@ -145,12 +149,14 @@ Navigation.propTypes = {
   loginData: PropTypes.object.isRequired,
   logout: PropTypes.func.isRequired,
   clearState: PropTypes.func.isRequired,
-  clearErrors: PropTypes.func.isRequired
+  clearErrors: PropTypes.func.isRequired,
+  projects: PropTypes.array
 };
 
 const mapStateToProps = state => {
   return {
-    loginData: state.login
+    loginData: state.login,
+    projects: state.projects.projects
   };
 };
 

@@ -37,7 +37,7 @@ class EditWorkTime extends Component {
     const { user, projectInfo } = this.props;
     this.props.updateWorkTime({
       userID: user.id,
-      projectID: projectInfo._id,
+      projectID: projectInfo.project._id,
       workTime: {
         date: this.state.startDate,
         hours: this.state.hours

@@ -2,7 +2,7 @@ const defaultState = {
   projects: [],
   projectsFromDB: [],
   info: {},
-  projectInfo: { dueDate: " ", name: " " },
+  projectInfo: { project: { dueDate: " ", name: " " } },
   edit: false,
   editProject: false,
   updatedTimeInfo: [],
@@ -14,6 +14,26 @@ const defaultState = {
 
 export default function projectsReducer(state = defaultState, action) {
   switch(action.type) {
+
+  case "UPDATE_HOURS_FULFILLED": {
+    return {
+      ...state,
+      projectInfo: {
+        ...state.projectInfo,
+        hoursWorked: action.payload.data
+      }
+
+    };
+  }
+  case "UPDATE_HOURS_SELECTED_FULFILLED": {
+    return {
+      ...state,
+      projectInfo: {
+        ...state.projectInfo,
+        additionalData: action.payload.data
+      }
+    };
+  }
 
   case "CLEAR_ERRORS":{
     return { ...state, messages: {} };
@@ -49,7 +69,7 @@ export default function projectsReducer(state = defaultState, action) {
     return {
       ...state,
       projectInfo: state.projects.find(project => {
-        return project._id === action.payload;
+        return project.project._id === action.payload;
       }),
       clearID : false,
       noProject: false,
@@ -79,8 +99,8 @@ export default function projectsReducer(state = defaultState, action) {
       updatedTimeInfo: action.payload.data,
       projectInfo: {
         ...state.projectInfo,
-        hoursWorked: action.payload.data.reduce((acc, time) => {
-          return acc + time.hoursWorked;
+        additionalData: action.payload.data.reduce((acc, time) => {
+          return acc += time.hoursWorked;
         }, 0)
       },
       edit: false

@@ -1,0 +1,10 @@
+.buttons button {
+  margin-right: 15px;
+}
+
+@media screen and (max-width: 750px) {
+  .all-projects {
+    display: flex;
+    flex-direction: column;
+  }
+}

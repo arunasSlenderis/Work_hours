@@ -13,6 +13,7 @@ class ProjectDescription extends Component {
 
   render() {
     const { projectInfo, edit, message } = this.props;
+    const { project } = projectInfo;
     return (
       <div className="col-sm-8">
         {
@@ -33,12 +34,17 @@ class ProjectDescription extends Component {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>{ projectInfo.name }</td>
-                <td>{ projectInfo.client }</td>
-                <td>{ projectInfo.dueDate.substr(0, 10) }</td>
-                <td>{ projectInfo.hoursWorked }</td>
-              </tr>
+              {
+                project ?
+                <tr>
+                  <td>{ project.name }</td>
+                  <td>{ project.client }</td>
+                  <td>{ project.dueDate }</td>
+                  <td>{ projectInfo.additionalData }</td>
+                </tr> :
+                ""
+              }
+
             </tbody>
           </table>
           <button

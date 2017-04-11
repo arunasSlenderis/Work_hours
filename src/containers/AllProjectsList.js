@@ -4,11 +4,14 @@ import { connect } from "react-redux";
 import {
   getProjectsFromDB,
   manageProjectSelected,
+  updateProjectHours,
   deleteProject,
   editProject
 } from "../redux/actions/projectsActions";
 import ProjectInfo from "./ProjectInfo";
 import EditProject from "./EditProject";
+
+import "../styles/manageProjects.scss";
 
 class AllProjectsList extends Component {
   constructor() {
@@ -27,6 +30,7 @@ class AllProjectsList extends Component {
 
   selected(id, e) {
     this.props.manageProjectSelected(id);
+    this.props.updateProjectHours(id);
 
     this.setState({ projectID: id });
 
@@ -59,8 +63,8 @@ class AllProjectsList extends Component {
   render() {
     const { projects, noProject, editProject, edit } = this.props;
     return (
-      <div>
-        <div className="col-sm-3 col-xs-11 text-center list">
+      <div className="all-projects">
+        <div className="col-sm-3 col-xs-12 text-center list">
           <div className="row">
             <ul>
               {
@@ -89,9 +93,9 @@ class AllProjectsList extends Component {
             </div>
           }
           <div className="row">
-            { projects.length && <ProjectInfo /> }
+            { projects.length > 0 && <ProjectInfo /> }
           </div>
-          <div className="row">
+          <div className="row buttons">
             <button
               disabled={ noProject }
               onClick={ this.deletePr }
@@ -119,6 +123,7 @@ class AllProjectsList extends Component {
 
 AllProjectsList.propTypes = {
   getProjectsFromDB: PropTypes.func.isRequired,
+  updateProjectHours: PropTypes.func.isRequired,
   deleteProject: PropTypes.func.isRequired,
   manageProjectSelected: PropTypes.func.isRequired,
   editProject: PropTypes.func.isRequired,
@@ -139,5 +144,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { getProjectsFromDB, manageProjectSelected, deleteProject, editProject }
+  { getProjectsFromDB, manageProjectSelected, deleteProject, editProject, updateProjectHours }
 )(AllProjectsList);

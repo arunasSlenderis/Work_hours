@@ -2,6 +2,20 @@ import axios from "axios";
 
 import validateInput from "../../../shared/addProjectValidation";
 
+export function updateProjectHours(id) {
+  return dispatch => {
+    const updateHours = axios.put("/api/updateHours", { id });
+
+    dispatch({
+      type: "UPDATE_HOURS",
+      payload: updateHours
+    })
+    .catch(() => {
+      console.error("Failed to update hours");
+    });
+  };
+}
+
 export function getAllProjects(id) {
   return dispatch => {
     const request = axios.get("/api/dashboard", { params: { id } });
@@ -19,7 +33,6 @@ export function getAllProjects(id) {
 export function getProjectsFromDB() {
   return dispatch => {
     const request = axios.get("/api/projects");
-
     dispatch({
       type: "GET_ALL_PROJECTS_FROM_DB",
       payload: request
@@ -40,6 +53,20 @@ export function updateWorkTime(data) {  //userId, projectId
     })
     .catch(() => {
       console.error("Failed to update work time");
+    });
+  };
+}
+
+export function updateHours(data) {  //userId, projectId
+  return dispatch => {
+    const request = axios.put("/api/dashboard/selected", data);
+
+    dispatch({
+      type: "UPDATE_HOURS_SELECTED",
+      payload: request
+    })
+    .catch(() => {
+      console.error("Failed to update hours");
     });
   };
 }
