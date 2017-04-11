@@ -70,7 +70,7 @@ if(process.env.NODE_ENV.trim() == "production") {
 
   app.get("/*", function (req, res, next) {
     const filename = path.join(__dirname, "index.html");
-    console.log(filename);
+    console.log("FILENAME: ",filename);
     fs.readFile(filename, function(err, result){
       if (err) {
         return next(err);
