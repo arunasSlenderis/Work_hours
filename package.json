@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "serve": "SET NODE_ENV=production & babel-node server.js",
-    "start": "SET NODE_ENV=production & node dist/server/server.js",
+    "start": "SET NODE_ENV=production & node dist/server.js",
     "webpack": "node_modules/.bin/webpack",
     "removeDist": "rimraf dist",
     "buildServer": "webpack --config webpack.server.config.js",

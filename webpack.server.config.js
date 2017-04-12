@@ -15,7 +15,7 @@ module.exports = {
   entry: path.join(__dirname, "server.js"),
   target: "node",
   output: {
-    path: path.join(__dirname, "dist", "server"),
+    path: path.join(__dirname, "dist"),
     filename: "server.js"
   },
   externals: nodeModules
