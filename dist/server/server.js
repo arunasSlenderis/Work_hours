@@ -2543,7 +2543,7 @@ if(process.env.NODE_ENV.trim() == "production") {
   app.use(__WEBPACK_IMPORTED_MODULE_0_express___default.a.static(__WEBPACK_IMPORTED_MODULE_8_path___default.a.join(__dirname, "dist")));
 
   app.get("/*", (req, res) => {
-    res.sendFile(__WEBPACK_IMPORTED_MODULE_8_path___default.a.join(__dirname, "dist", "index.html"));
+    res.sendFile("index.html");
   });
   // app.get("/*", function (req, res, next) {
   //   const filename = path.join(__dirname, "index.html");
