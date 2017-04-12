@@ -9,6 +9,7 @@ import mongoose from "mongoose"; //for production
 import connectMongo from "connect-mongo"; //for production
 import passport from "passport";
 import path from "path";
+import fs from "fs";
 // import webpack from "webpack";
 // import webpackDevMiddleware from "webpack-dev-middleware";
 // import webpackHotMiddleware from "webpack-hot-middleware";
@@ -66,26 +67,24 @@ if(process.env.NODE_ENV.trim() == "production") {
   app.use(compression());
   app.use(express.static("./dist"));
 
-  app.get("/*", (req, res) => {
-    res.sendFile(path.resolve("./dist/index.html"));
-  });
-
-  // app.get("/*", function (req, res, next) {
-  //   const filename = path.join(__dirname, "index.html");
-  //   console.log("FILENAME: ",filename);
-  //   console.log("DIRNAME: ",__dirname);
-  //
-  //   fs.readFile(filename, function(err, result){
-  //     if (err) {
-  //       return next(err);
-  //     }
-  //     if(req.url === "/api/dashboard" || req.url === "/api/usersList") return next();
-  //
-  //     res.set("content-type","text/html");
-  //     res.send(result);
-  //     res.end();
-  //   });
+  // app.get("/*", (req, res) => {
+  //   res.sendFile(path.resolve("./dist/index.html"));
   // });
+
+  app.get("/*", function (req, res, next) {
+    const filename = path.resolve("./dist/index.html");
+
+    fs.readFile(filename, function(err, result){
+      if (err) {
+        return next(err);
+      }
+      if(req.url === "/api/dashboard" || req.url === "/api/usersList") return next();
+
+      res.set("content-type","text/html");
+      res.send(result);
+      res.end();
+    });
+  });
 }
 
 
