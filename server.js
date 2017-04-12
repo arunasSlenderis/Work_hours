@@ -7,14 +7,12 @@ import cookie from "cookie-parser";
 import expressValidator from "express-validator";
 import mongoose from "mongoose"; //for production
 import connectMongo from "connect-mongo"; //for production
-// import flash from "connect-flash";
 import passport from "passport";
 import path from "path";
 // import webpack from "webpack";
 // import webpackDevMiddleware from "webpack-dev-middleware";
 // import webpackHotMiddleware from "webpack-hot-middleware";
-// import compression from "compression";
-// import fs from "fs";
+import compression from "compression";
 
 
 //local modules
@@ -32,6 +30,9 @@ const app = express();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use("/api/dashboard", dashboard); //GET
+app.use("/api/projects", projects); //GET
 
 // if(process.env.NODE_ENV.trim() == "development") {
 //   app.use(webpackDevMiddleware(compiler, {
@@ -62,7 +63,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // }
 
 if(process.env.NODE_ENV.trim() == "production") {
-  // app.use(compression());
+  app.use(compression());
   app.use(express.static("./dist"));
 
   app.get("/*", (req, res) => {
@@ -87,8 +88,7 @@ if(process.env.NODE_ENV.trim() == "production") {
   // });
 }
 
-app.use("/api/dashboard", dashboard); //GET
-app.use("/api/projects", projects); //GET
+
 
 mongoose.Promise = global.Promise;
 // mongoose.connect("mongodb://localhost/workRecords"); DEV
@@ -113,7 +113,6 @@ app.use(session({
   resave: false,
   store: new MongoStore({ mongooseConnection: mongoose.connection }) //for production
 }));
-// app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 
