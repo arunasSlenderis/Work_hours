@@ -2540,7 +2540,7 @@ app.use("/api/projects", __WEBPACK_IMPORTED_MODULE_14__server_routes_projects__[
 
 if(process.env.NODE_ENV.trim() == "production") {
   app.use(__WEBPACK_IMPORTED_MODULE_9_compression___default()());
-  app.use(__WEBPACK_IMPORTED_MODULE_0_express___default.a.static(__WEBPACK_IMPORTED_MODULE_8_path___default.a.join(__dirname, "dist")));
+  // app.use(express.static(path.join(__dirname, "dist")));
 
   app.get("/*", (req, res) => {
     res.sendFile(__WEBPACK_IMPORTED_MODULE_8_path___default.a.join(__dirname, "dist", "index.html"));
