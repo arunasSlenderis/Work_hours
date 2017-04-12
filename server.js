@@ -33,9 +33,6 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use("/api/dashboard", dashboard); //GET
-app.use("/api/projects", projects); //GET
-
 // if(process.env.NODE_ENV.trim() == "development") {
 //   app.use(webpackDevMiddleware(compiler, {
 //     hot: true,
@@ -89,6 +86,9 @@ if(process.env.NODE_ENV.trim() == "production") {
   //   });
   // });
 }
+
+app.use("/api/dashboard", dashboard); //GET
+app.use("/api/projects", projects); //GET
 
 mongoose.Promise = global.Promise;
 // mongoose.connect("mongodb://localhost/workRecords"); DEV

@@ -2499,9 +2499,6 @@ const app = __WEBPACK_IMPORTED_MODULE_0_express___default()();
 app.use(__WEBPACK_IMPORTED_MODULE_1_body_parser___default.a.json());
 app.use(__WEBPACK_IMPORTED_MODULE_1_body_parser___default.a.urlencoded({ extended: true }));
 
-app.use("/api/dashboard", __WEBPACK_IMPORTED_MODULE_12__server_routes_dashboard__["a" /* default */]); //GET
-app.use("/api/projects", __WEBPACK_IMPORTED_MODULE_13__server_routes_projects__["a" /* default */]); //GET
-
 // if(process.env.NODE_ENV.trim() == "development") {
 //   app.use(webpackDevMiddleware(compiler, {
 //     hot: true,
@@ -2555,6 +2552,9 @@ if(process.env.NODE_ENV.trim() == "production") {
   //   });
   // });
 }
+
+app.use("/api/dashboard", __WEBPACK_IMPORTED_MODULE_12__server_routes_dashboard__["a" /* default */]); //GET
+app.use("/api/projects", __WEBPACK_IMPORTED_MODULE_13__server_routes_projects__["a" /* default */]); //GET
 
 __WEBPACK_IMPORTED_MODULE_5_mongoose___default.a.Promise = global.Promise;
 // mongoose.connect("mongodb://localhost/workRecords"); DEV

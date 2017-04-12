@@ -14,6 +14,7 @@ export default function usersReducer(state = defaultState, action) {
     return { ...state, resMessages: {} };
   }
   case "GET_USERS_LIST_FULFILLED": {
+    // console.log(state.users);
     return {
       ...state,
       users: action.payload.data,
