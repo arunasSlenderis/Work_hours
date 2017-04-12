@@ -13,7 +13,7 @@ import path from "path";
 // import webpack from "webpack";
 // import webpackDevMiddleware from "webpack-dev-middleware";
 // import webpackHotMiddleware from "webpack-hot-middleware";
-import compression from "compression";
+// import compression from "compression";
 // import fs from "fs";
 
 
@@ -65,11 +65,11 @@ app.use("/api/projects", projects); //GET
 // }
 
 if(process.env.NODE_ENV.trim() == "production") {
-  app.use(compression());
+  // app.use(compression());
   // app.use(express.static(path.join(__dirname, "dist")));
 
   app.get("/*", (req, res) => {
-    res.sendFile(path.join(__dirname, "index.html"));
+    res.sendFile(path.join(__dirname, "dist", "index.html"));
   });
   // app.get("/*", function (req, res, next) {
   //   const filename = path.join(__dirname, "index.html");

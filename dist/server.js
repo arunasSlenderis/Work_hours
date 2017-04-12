@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 69);
+/******/ 	return __webpack_require__(__webpack_require__.s = 68);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -94,7 +94,7 @@ module.exports = root;
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_mongoose__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_mongoose___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_mongoose__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_bcrypt_nodejs__ = __webpack_require__(67);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_bcrypt_nodejs__ = __webpack_require__(66);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_bcrypt_nodejs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_bcrypt_nodejs__);
 
 
@@ -191,8 +191,8 @@ function authenticate(req, res, next) {
 /* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var baseIsNative = __webpack_require__(43),
-    getValue = __webpack_require__(50);
+var baseIsNative = __webpack_require__(42),
+    getValue = __webpack_require__(49);
 
 /**
  * Gets the native function at `key` of `object`.
@@ -252,8 +252,8 @@ const Project = __WEBPACK_IMPORTED_MODULE_0_mongoose___default.a.model("project"
 /***/ (function(module, exports, __webpack_require__) {
 
 var Symbol = __webpack_require__(12),
-    getRawTag = __webpack_require__(48),
-    objectToString = __webpack_require__(54);
+    getRawTag = __webpack_require__(47),
+    objectToString = __webpack_require__(53);
 
 /** `Object#toString` result references. */
 var nullTag = '[object Null]',
@@ -285,14 +285,14 @@ module.exports = baseGetTag;
 /* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var baseKeys = __webpack_require__(45),
-    getTag = __webpack_require__(49),
-    isArguments = __webpack_require__(56),
-    isArray = __webpack_require__(57),
-    isArrayLike = __webpack_require__(58),
-    isBuffer = __webpack_require__(59),
+var baseKeys = __webpack_require__(44),
+    getTag = __webpack_require__(48),
+    isArguments = __webpack_require__(55),
+    isArray = __webpack_require__(56),
+    isArrayLike = __webpack_require__(57),
+    isBuffer = __webpack_require__(58),
     isPrototype = __webpack_require__(14),
-    isTypedArray = __webpack_require__(60);
+    isTypedArray = __webpack_require__(59);
 
 /** `Object#toString` result references. */
 var mapTag = '[object Map]',
@@ -668,7 +668,7 @@ module.exports = require("jsonwebtoken");
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_passport__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_passport___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_passport__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_passport_local__ = __webpack_require__(68);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_passport_local__ = __webpack_require__(67);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_passport_local___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_passport_local__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__DB_models_User__ = __webpack_require__(2);
 
@@ -759,7 +759,7 @@ __WEBPACK_IMPORTED_MODULE_0_passport___default.a.use("local.login", new __WEBPAC
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_express___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_express__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__DB_models_Project_js__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__middlewares_authenticate__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_addProjectValidation__ = __webpack_require__(63);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_addProjectValidation__ = __webpack_require__(62);
 
 
 const router = __WEBPACK_IMPORTED_MODULE_0_express___default.a.Router();
@@ -821,7 +821,7 @@ router.post("/", __WEBPACK_IMPORTED_MODULE_2__middlewares_authenticate__["a" /* 
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_express___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_express__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__DB_models_User__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__middlewares_authenticate__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_addUserValidation__ = __webpack_require__(64);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_addUserValidation__ = __webpack_require__(63);
 
 
 const router = __WEBPACK_IMPORTED_MODULE_0_express___default.a.Router();
@@ -1024,7 +1024,7 @@ router.put("/selected", __WEBPACK_IMPORTED_MODULE_3__middlewares_authenticate__[
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_express___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_express__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_jsonwebtoken__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_jsonwebtoken___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_jsonwebtoken__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_loginValidation__ = __webpack_require__(65);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_loginValidation__ = __webpack_require__(64);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__config_jwtConfig__ = __webpack_require__(20);
 
 
@@ -1342,8 +1342,8 @@ router.put("/", __WEBPACK_IMPORTED_MODULE_3__middlewares_authenticate__["a" /* d
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_express___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_express__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__DB_models_User__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__middlewares_authenticate__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__middlewares_isAdmin__ = __webpack_require__(62);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_updateUserValidation__ = __webpack_require__(66);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__middlewares_isAdmin__ = __webpack_require__(61);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_updateUserValidation__ = __webpack_require__(65);
 
 
 
@@ -1465,40 +1465,34 @@ module.exports = require("body-parser");
 /* 31 */
 /***/ (function(module, exports) {
 
-module.exports = require("compression");
+module.exports = require("connect-mongo");
 
 /***/ }),
 /* 32 */
 /***/ (function(module, exports) {
 
-module.exports = require("connect-mongo");
+module.exports = require("cookie-parser");
 
 /***/ }),
 /* 33 */
 /***/ (function(module, exports) {
 
-module.exports = require("cookie-parser");
+module.exports = require("express-session");
 
 /***/ }),
 /* 34 */
 /***/ (function(module, exports) {
 
-module.exports = require("express-session");
+module.exports = require("express-validator");
 
 /***/ }),
 /* 35 */
 /***/ (function(module, exports) {
 
-module.exports = require("express-validator");
-
-/***/ }),
-/* 36 */
-/***/ (function(module, exports) {
-
 module.exports = require("path");
 
 /***/ }),
-/* 37 */
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var getNative = __webpack_require__(4),
@@ -1511,7 +1505,7 @@ module.exports = DataView;
 
 
 /***/ }),
-/* 38 */
+/* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var getNative = __webpack_require__(4),
@@ -1524,7 +1518,7 @@ module.exports = Map;
 
 
 /***/ }),
-/* 39 */
+/* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var getNative = __webpack_require__(4),
@@ -1537,7 +1531,7 @@ module.exports = Promise;
 
 
 /***/ }),
-/* 40 */
+/* 39 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var getNative = __webpack_require__(4),
@@ -1550,7 +1544,7 @@ module.exports = Set;
 
 
 /***/ }),
-/* 41 */
+/* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var getNative = __webpack_require__(4),
@@ -1563,7 +1557,7 @@ module.exports = WeakMap;
 
 
 /***/ }),
-/* 42 */
+/* 41 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var baseGetTag = __webpack_require__(6),
@@ -1587,11 +1581,11 @@ module.exports = baseIsArguments;
 
 
 /***/ }),
-/* 43 */
+/* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var isFunction = __webpack_require__(16),
-    isMasked = __webpack_require__(51),
+    isMasked = __webpack_require__(50),
     isObject = __webpack_require__(18),
     toSource = __webpack_require__(15);
 
@@ -1640,7 +1634,7 @@ module.exports = baseIsNative;
 
 
 /***/ }),
-/* 44 */
+/* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var baseGetTag = __webpack_require__(6),
@@ -1706,11 +1700,11 @@ module.exports = baseIsTypedArray;
 
 
 /***/ }),
-/* 45 */
+/* 44 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var isPrototype = __webpack_require__(14),
-    nativeKeys = __webpack_require__(52);
+    nativeKeys = __webpack_require__(51);
 
 /** Used for built-in method references. */
 var objectProto = Object.prototype;
@@ -1742,7 +1736,7 @@ module.exports = baseKeys;
 
 
 /***/ }),
-/* 46 */
+/* 45 */
 /***/ (function(module, exports) {
 
 /**
@@ -1762,7 +1756,7 @@ module.exports = baseUnary;
 
 
 /***/ }),
-/* 47 */
+/* 46 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var root = __webpack_require__(1);
@@ -1774,7 +1768,7 @@ module.exports = coreJsData;
 
 
 /***/ }),
-/* 48 */
+/* 47 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Symbol = __webpack_require__(12);
@@ -1826,14 +1820,14 @@ module.exports = getRawTag;
 
 
 /***/ }),
-/* 49 */
+/* 48 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var DataView = __webpack_require__(37),
-    Map = __webpack_require__(38),
-    Promise = __webpack_require__(39),
-    Set = __webpack_require__(40),
-    WeakMap = __webpack_require__(41),
+var DataView = __webpack_require__(36),
+    Map = __webpack_require__(37),
+    Promise = __webpack_require__(38),
+    Set = __webpack_require__(39),
+    WeakMap = __webpack_require__(40),
     baseGetTag = __webpack_require__(6),
     toSource = __webpack_require__(15);
 
@@ -1890,7 +1884,7 @@ module.exports = getTag;
 
 
 /***/ }),
-/* 50 */
+/* 49 */
 /***/ (function(module, exports) {
 
 /**
@@ -1909,10 +1903,10 @@ module.exports = getValue;
 
 
 /***/ }),
-/* 51 */
+/* 50 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var coreJsData = __webpack_require__(47);
+var coreJsData = __webpack_require__(46);
 
 /** Used to detect methods masquerading as native. */
 var maskSrcKey = (function() {
@@ -1935,10 +1929,10 @@ module.exports = isMasked;
 
 
 /***/ }),
-/* 52 */
+/* 51 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var overArg = __webpack_require__(55);
+var overArg = __webpack_require__(54);
 
 /* Built-in method references for those with the same name as other `lodash` methods. */
 var nativeKeys = overArg(Object.keys, Object);
@@ -1947,7 +1941,7 @@ module.exports = nativeKeys;
 
 
 /***/ }),
-/* 53 */
+/* 52 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(module) {var freeGlobal = __webpack_require__(13);
@@ -1976,7 +1970,7 @@ module.exports = nodeUtil;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(19)(module)))
 
 /***/ }),
-/* 54 */
+/* 53 */
 /***/ (function(module, exports) {
 
 /** Used for built-in method references. */
@@ -2004,7 +1998,7 @@ module.exports = objectToString;
 
 
 /***/ }),
-/* 55 */
+/* 54 */
 /***/ (function(module, exports) {
 
 /**
@@ -2025,10 +2019,10 @@ module.exports = overArg;
 
 
 /***/ }),
-/* 56 */
+/* 55 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var baseIsArguments = __webpack_require__(42),
+var baseIsArguments = __webpack_require__(41),
     isObjectLike = __webpack_require__(11);
 
 /** Used for built-in method references. */
@@ -2067,7 +2061,7 @@ module.exports = isArguments;
 
 
 /***/ }),
-/* 57 */
+/* 56 */
 /***/ (function(module, exports) {
 
 /**
@@ -2099,7 +2093,7 @@ module.exports = isArray;
 
 
 /***/ }),
-/* 58 */
+/* 57 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var isFunction = __webpack_require__(16),
@@ -2138,11 +2132,11 @@ module.exports = isArrayLike;
 
 
 /***/ }),
-/* 59 */
+/* 58 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(module) {var root = __webpack_require__(1),
-    stubFalse = __webpack_require__(61);
+    stubFalse = __webpack_require__(60);
 
 /** Detect free variable `exports`. */
 var freeExports = typeof exports == 'object' && exports && !exports.nodeType && exports;
@@ -2183,12 +2177,12 @@ module.exports = isBuffer;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(19)(module)))
 
 /***/ }),
-/* 60 */
+/* 59 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var baseIsTypedArray = __webpack_require__(44),
-    baseUnary = __webpack_require__(46),
-    nodeUtil = __webpack_require__(53);
+var baseIsTypedArray = __webpack_require__(43),
+    baseUnary = __webpack_require__(45),
+    nodeUtil = __webpack_require__(52);
 
 /* Node.js helper references. */
 var nodeIsTypedArray = nodeUtil && nodeUtil.isTypedArray;
@@ -2216,7 +2210,7 @@ module.exports = isTypedArray;
 
 
 /***/ }),
-/* 61 */
+/* 60 */
 /***/ (function(module, exports) {
 
 /**
@@ -2240,7 +2234,7 @@ module.exports = stubFalse;
 
 
 /***/ }),
-/* 62 */
+/* 61 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2265,7 +2259,7 @@ function isAdmin(req, res, next) {
 
 
 /***/ }),
-/* 63 */
+/* 62 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2307,7 +2301,7 @@ function validateInput(data) {
 
 
 /***/ }),
-/* 64 */
+/* 63 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2349,7 +2343,7 @@ function validateInput(data) {
 
 
 /***/ }),
-/* 65 */
+/* 64 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2379,7 +2373,7 @@ function validateInput(data) {
 
 
 /***/ }),
-/* 66 */
+/* 65 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2428,19 +2422,19 @@ function validateInput(data) {
 
 
 /***/ }),
-/* 67 */
+/* 66 */
 /***/ (function(module, exports) {
 
 module.exports = require("bcrypt-nodejs");
 
 /***/ }),
-/* 68 */
+/* 67 */
 /***/ (function(module, exports) {
 
 module.exports = require("passport-local");
 
 /***/ }),
-/* 69 */
+/* 68 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2449,29 +2443,27 @@ module.exports = require("passport-local");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_express___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_express__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_body_parser__ = __webpack_require__(30);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_body_parser___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_body_parser__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_express_session__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_express_session__ = __webpack_require__(33);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_express_session___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_express_session__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_cookie_parser__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_cookie_parser__ = __webpack_require__(32);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_cookie_parser___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_cookie_parser__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_express_validator__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_express_validator__ = __webpack_require__(34);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_express_validator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_express_validator__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_mongoose__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_mongoose___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_mongoose__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_connect_mongo__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_connect_mongo__ = __webpack_require__(31);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_connect_mongo___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_connect_mongo__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_passport__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_passport___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_passport__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_path__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_path__ = __webpack_require__(35);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_path___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_path__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_compression__ = __webpack_require__(31);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_compression___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9_compression__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__server_routes_addUser__ = __webpack_require__(24);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__server_routes_addProject__ = __webpack_require__(23);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__server_routes_login__ = __webpack_require__(26);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__server_routes_dashboard__ = __webpack_require__(25);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__server_routes_projects__ = __webpack_require__(28);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__server_routes_usersList__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__server_routes_manageProjects__ = __webpack_require__(27);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__server_routes_addUser__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__server_routes_addProject__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__server_routes_login__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__server_routes_dashboard__ = __webpack_require__(25);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__server_routes_projects__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__server_routes_usersList__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__server_routes_manageProjects__ = __webpack_require__(27);
 //npm modules
 
 
@@ -2487,7 +2479,7 @@ module.exports = require("passport-local");
 // import webpack from "webpack";
 // import webpackDevMiddleware from "webpack-dev-middleware";
 // import webpackHotMiddleware from "webpack-hot-middleware";
-
+// import compression from "compression";
 // import fs from "fs";
 
 
@@ -2507,8 +2499,8 @@ const app = __WEBPACK_IMPORTED_MODULE_0_express___default()();
 app.use(__WEBPACK_IMPORTED_MODULE_1_body_parser___default.a.json());
 app.use(__WEBPACK_IMPORTED_MODULE_1_body_parser___default.a.urlencoded({ extended: true }));
 
-app.use("/api/dashboard", __WEBPACK_IMPORTED_MODULE_13__server_routes_dashboard__["a" /* default */]); //GET
-app.use("/api/projects", __WEBPACK_IMPORTED_MODULE_14__server_routes_projects__["a" /* default */]); //GET
+app.use("/api/dashboard", __WEBPACK_IMPORTED_MODULE_12__server_routes_dashboard__["a" /* default */]); //GET
+app.use("/api/projects", __WEBPACK_IMPORTED_MODULE_13__server_routes_projects__["a" /* default */]); //GET
 
 // if(process.env.NODE_ENV.trim() == "development") {
 //   app.use(webpackDevMiddleware(compiler, {
@@ -2539,11 +2531,11 @@ app.use("/api/projects", __WEBPACK_IMPORTED_MODULE_14__server_routes_projects__[
 // }
 
 if(process.env.NODE_ENV.trim() == "production") {
-  app.use(__WEBPACK_IMPORTED_MODULE_9_compression___default()());
+  // app.use(compression());
   // app.use(express.static(path.join(__dirname, "dist")));
 
   app.get("/*", (req, res) => {
-    res.sendFile(__WEBPACK_IMPORTED_MODULE_8_path___default.a.join(__dirname, "index.html"));
+    res.sendFile(__WEBPACK_IMPORTED_MODULE_8_path___default.a.join(__dirname, "dist", "index.html"));
   });
   // app.get("/*", function (req, res, next) {
   //   const filename = path.join(__dirname, "index.html");
@@ -2591,18 +2583,18 @@ app.use(__WEBPACK_IMPORTED_MODULE_7_passport___default.a.initialize());
 app.use(__WEBPACK_IMPORTED_MODULE_7_passport___default.a.session());
 
 //routes
-app.use("/api/addUser", __WEBPACK_IMPORTED_MODULE_10__server_routes_addUser__["a" /* default */]); //POST
-app.use("/api/addProject", __WEBPACK_IMPORTED_MODULE_11__server_routes_addProject__["a" /* default */]); //POST
-app.use("/api/login", __WEBPACK_IMPORTED_MODULE_12__server_routes_login__["a" /* default */]); //POST
-app.use("/api/usersList", __WEBPACK_IMPORTED_MODULE_15__server_routes_usersList__["a" /* default */]); //GET
-app.use("/api/usersList/updateUser", __WEBPACK_IMPORTED_MODULE_15__server_routes_usersList__["a" /* default */]); //PUT
-app.use("/api/usersList/deleteUser", __WEBPACK_IMPORTED_MODULE_15__server_routes_usersList__["a" /* default */]); //DELETE
-app.use("/api/manageProjects/deleteProject", __WEBPACK_IMPORTED_MODULE_16__server_routes_manageProjects__["a" /* default */]); //DELETE
-app.use("/api/manageProjects/updateProject", __WEBPACK_IMPORTED_MODULE_16__server_routes_manageProjects__["a" /* default */]); //PUT
-app.use("/api/usersList/assignProjects", __WEBPACK_IMPORTED_MODULE_15__server_routes_usersList__["a" /* default */]); //PUT
-app.use("/api/updateHours", __WEBPACK_IMPORTED_MODULE_14__server_routes_projects__["a" /* default */]); //PUT
+app.use("/api/addUser", __WEBPACK_IMPORTED_MODULE_9__server_routes_addUser__["a" /* default */]); //POST
+app.use("/api/addProject", __WEBPACK_IMPORTED_MODULE_10__server_routes_addProject__["a" /* default */]); //POST
+app.use("/api/login", __WEBPACK_IMPORTED_MODULE_11__server_routes_login__["a" /* default */]); //POST
+app.use("/api/usersList", __WEBPACK_IMPORTED_MODULE_14__server_routes_usersList__["a" /* default */]); //GET
+app.use("/api/usersList/updateUser", __WEBPACK_IMPORTED_MODULE_14__server_routes_usersList__["a" /* default */]); //PUT
+app.use("/api/usersList/deleteUser", __WEBPACK_IMPORTED_MODULE_14__server_routes_usersList__["a" /* default */]); //DELETE
+app.use("/api/manageProjects/deleteProject", __WEBPACK_IMPORTED_MODULE_15__server_routes_manageProjects__["a" /* default */]); //DELETE
+app.use("/api/manageProjects/updateProject", __WEBPACK_IMPORTED_MODULE_15__server_routes_manageProjects__["a" /* default */]); //PUT
+app.use("/api/usersList/assignProjects", __WEBPACK_IMPORTED_MODULE_14__server_routes_usersList__["a" /* default */]); //PUT
+app.use("/api/updateHours", __WEBPACK_IMPORTED_MODULE_13__server_routes_projects__["a" /* default */]); //PUT
 
-app.use("/api/dashboard/updateWorkTime", __WEBPACK_IMPORTED_MODULE_13__server_routes_dashboard__["a" /* default */]); //PUT
+app.use("/api/dashboard/updateWorkTime", __WEBPACK_IMPORTED_MODULE_12__server_routes_dashboard__["a" /* default */]); //PUT
 
 app.listen(PORT, () => {
   console.log(`Server is listening on port ${PORT} in ${process.env.NODE_ENV}mode`);
